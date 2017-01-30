@@ -13,8 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableWebSecurity
 @Slf4j
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    @Autowired
-    RouteLocator routeLocator;
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
