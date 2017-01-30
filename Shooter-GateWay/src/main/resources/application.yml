@@ -1,0 +1,16 @@
+server:
+  port: 9000
+  application:
+    name: gateway-server
+  aop:
+    proxyTargetClass: true
+logging.level.org.springframework.security: DEBUG
+
+security:
+  # Disable Spring Boot basic authentication
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:9000/oauth/token
+      userAuthorizationUri: /oauth/authorize

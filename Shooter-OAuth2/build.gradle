@@ -22,11 +22,20 @@ repositories {
 dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-config')
     compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile('org.springframework.boot:spring-boot-starter-web')
 
-    compile('org.springframework.cloud:spring-cloud-starter-zuul')
     compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.security.oauth:spring-security-oauth2')
+    compile('org.springframework.security:spring-security-jwt')
+
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.projectlombok:lombok:1.16.6')
-    compile project(':Shooter-JHipster')
+
+    compile('com.h2database:h2')
+    compile('mysql:mysql-connector-java')
+
+    compile('org.flywaydb:flyway-core')
 }
 
 dependencyManagement {

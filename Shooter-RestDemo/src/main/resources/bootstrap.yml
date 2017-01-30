@@ -4,17 +4,6 @@
 #      uri: http://localhost:8888
 #      failFast: true
 
-zuul:
-  routes:
-    rest:
-      path: /restaa/**
-      serviceId: restdemo
-    uaa-service:
-      sensitiveHeaders:
-      path: /uaa/**
-      serviceId: oauth2-service
-      stripPrefix: false
-  add-proxy-headers: true
 eureka:
   client:
     service-url:
