@@ -3,3 +3,5 @@ server:
 spring:
   application:
     name: server-discovery
+logging.level:
+  org.springframework.*: trace

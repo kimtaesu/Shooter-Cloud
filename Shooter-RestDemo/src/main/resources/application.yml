@@ -5,3 +5,5 @@ spring:
   application:
     name: restdemo
 
+logging.level:
+  org.springframework.*: trace

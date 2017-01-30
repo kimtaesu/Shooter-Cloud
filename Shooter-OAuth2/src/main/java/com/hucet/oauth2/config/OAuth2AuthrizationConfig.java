@@ -13,8 +13,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 @Configuration
@@ -23,6 +21,7 @@ public class OAuth2AuthrizationConfig extends AuthorizationServerConfigurerAdapt
     @Autowired
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
+
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -41,12 +40,12 @@ public class OAuth2AuthrizationConfig extends AuthorizationServerConfigurerAdapt
         ;
     }
 
-    private TokenStore tokenStore = new InMemoryTokenStore();
-
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         super.configure(endpoints);
         endpoints
+                .authenticationManager(authenticationManager)
+                .userDetailsService(userDetailsService)
                 .accessTokenConverter(jwtAccessTokenConverter);
     }
 

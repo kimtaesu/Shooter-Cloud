@@ -19,7 +19,7 @@ public class JwtTokenConverterBean {
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         KeyPair keyPair = new KeyStoreKeyFactory(
-                new ClassPathResource("mytesta.jks"), "mypass".toCharArray())
+                new ClassPathResource("mytest.jks"), "mypass".toCharArray())
                 .getKeyPair("mytest");
         converter.setKeyPair(keyPair);
         return converter;

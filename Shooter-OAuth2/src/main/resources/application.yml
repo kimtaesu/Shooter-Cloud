@@ -9,7 +9,7 @@ spring:
     name: oauth2-service
 
 logging.level:
-  org.springframework.*: debug
+  org.springframework.*: trace
 
 spring.profiles.active: mysql
 ---
