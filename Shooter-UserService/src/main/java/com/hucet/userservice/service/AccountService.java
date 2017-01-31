@@ -26,6 +26,7 @@ public interface AccountService {
         @Autowired
         ModelMapper modelMapper;
 
+
         @Override
         public Account newUser(AccountDto.ApplicationRequest applicationRequest) {
             boolean exist = accountDao.findByUserName(applicationRequest.getUserEmail())
