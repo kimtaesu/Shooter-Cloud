@@ -5,3 +5,4 @@ include 'Shooter-Register'
 include 'Shooter-RestDemo'
 // module
 include 'Shooter-JHipster'
+include 'Shooter-OAuth2'

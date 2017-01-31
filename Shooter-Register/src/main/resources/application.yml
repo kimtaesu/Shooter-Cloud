@@ -1,7 +1,8 @@
 server:
   port: 8761
-spring:
-  application:
-    name: server-discovery
-logging.level:
-  org.springframework.*: trace
+
+# Logback 에서 yml 찾지 못함.
+spring.application.name: server-discovery
+
+logging:
+  config: external-config/logback-spring.xml

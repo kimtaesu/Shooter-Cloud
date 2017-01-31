@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+    <!-- 외부 설정파일을 사용할 수 있다. -->
+    <property resource="application.yml"></property>
+    <if condition='property("logging.mode").contains("redis")'>
+        <then>
+            <appender name="REDIS_LOG" class="com.cwbase.logback.RedisAppender">
+                <host>localhost</host>
+                <port>6379</port>
+                <key>spring-log</key>
+            </appender>
+            <root>
+                <appender-ref ref="REDIS_LOG"/>
+            </root>
+        </then>
+    </if>
+
+    <appender name="LogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>./logs/${spring.application.name}-spring.log</File>
+        <Append>true</Append>
+        <encoder>
+            <pattern>%d [%t] %p %logger{0} - %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/${spring.application.name}-spring.log.%d{yyyy-MM-dd }</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <appender name="ErrorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>./logs/spring-error.log</File>
+        <encoder>
+            <pattern>%d [%t] %p %logger{0} - %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/spring-error.log.%d{yyyy-MM-dd }</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="LogFile"/>
+        <appender-ref ref="ErrorFile"/>
+    </root>
+</configuration>

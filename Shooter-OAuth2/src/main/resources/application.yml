@@ -4,12 +4,10 @@ server:
   # Use different context-path to avoid session cookie overlapping
   context-path: /uaa
   use-forward-headers: false
-spring:
-  application:
-    name: oauth2-service
-
-logging.level:
-  org.springframework.*: trace
+# Logback 에서 yml 찾지 못함.
+spring.application.name: oauth2-service
+logging:
+  config: external-config/logback-spring.xml
 
 spring.profiles.active: mysql
 ---

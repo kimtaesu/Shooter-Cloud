@@ -1,9 +1,9 @@
 server:
   port: 8082
 
-spring:
-  application:
-    name: restdemo
+# Logback 에서 yml 찾지 못함.
+spring.application.name: restdemo
 
-logging.level:
-  org.springframework.*: trace
+logging:
+  config: external-config/logback-spring.xml
+
