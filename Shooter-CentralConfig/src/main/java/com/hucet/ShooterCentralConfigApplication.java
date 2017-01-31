@@ -1,4 +1,4 @@
-package com.hucet.central.config;
+package com.hucet.central;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
