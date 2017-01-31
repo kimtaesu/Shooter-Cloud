@@ -31,7 +31,7 @@
         </rollingPolicy>
     </appender>
     <appender name="ErrorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>./logs/spring-error.log</File>
+        <File>./logs/${spring.application.name}-spring-error.log</File>
         <encoder>
             <pattern>%d [%t] %p %logger{0} - %m%n</pattern>
         </encoder>
@@ -39,7 +39,7 @@
             <level>ERROR</level>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>./logs/spring-error.log.%d{yyyy-MM-dd }</fileNamePattern>
+            <fileNamePattern>./logs/${spring.application.name}-spring-error.log.%d{yyyy-MM-dd }</fileNamePattern>
         </rollingPolicy>
     </appender>
 
