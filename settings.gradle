@@ -6,3 +6,5 @@ include 'Shooter-UserService'
 // module
 include 'Shooter-JHipster'
 include 'Shooter-OAuth2'
+include 'Shooter-Mail'
+include 'Shooter-Properties'

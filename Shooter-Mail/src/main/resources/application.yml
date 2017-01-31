@@ -1,0 +1,36 @@
+server:
+  port: 8084
+
+# Logback 에서 yml 찾지 못함.
+spring.application.name: mail-service
+
+logging:
+  config: external-config/logback-spring.xml
+logging.level:
+  org.springframework.*: debug
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: test
+    password: test
+    virtual-host: /mail
+
+    binding:
+      mail:
+        queue: mail.queue
+        exchange: mail.direct
+        rountingKey: mail.queue
+
+mail:
+  host: smtp.gmail.com
+  port: 587
+  protocol: smtp
+  default-encoding: UTF-8
+  email: sendermail888@gmail.com
+  password: mailsender!@#
+  debug: true
+  smtp:
+    start-tls-enable: true
+    auth: true
