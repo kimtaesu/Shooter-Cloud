@@ -1,36 +1,6 @@
-buildscript {
-    ext {
-        springBootVersion = '1.4.4.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-
-repositories {
-    mavenCentral()
-}
-
 
 dependencies {
-    compile('org.springframework.cloud:spring-cloud-starter-config')
-    compile('org.springframework.cloud:spring-cloud-starter-eureka')
-
     compile('org.springframework.cloud:spring-cloud-starter-zuul')
     compile('org.springframework.boot:spring-boot-starter-security')
-    compile('org.projectlombok:lombok:1.16.6')
     compile project(':Shooter-JHipster')
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR4"
-    }
 }
