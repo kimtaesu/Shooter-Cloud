@@ -36,13 +36,13 @@ public class OAuthAccount {
     @Column(nullable = false)
     private String password;
 
-    private boolean isEnabled;
+    private boolean isEnabled = true;
 
-    private boolean isAccountNonExpired;
+    private boolean isAccountNonExpired = true;
 
-    private boolean isAccountNonLocked;
+    private boolean isAccountNonLocked = true;
 
-    private boolean isCredentialsNonExpired;
+    private boolean isCredentialsNonExpired = true;
 
     @ManyToMany
     @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))

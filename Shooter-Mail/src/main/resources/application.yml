@@ -15,7 +15,7 @@ spring:
     port: 5672
     username: test
     password: test
-    virtual-host: /mail
+    virtual-host: /test
 
     binding:
       mail:

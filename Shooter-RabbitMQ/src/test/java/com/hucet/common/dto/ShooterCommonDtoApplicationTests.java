@@ -1,4 +1,4 @@
-package com.hucet.module.properties;
+package com.hucet.common.dto;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ShooterPropertiesApplicationTests {
+public class ShooterCommonDtoApplicationTests {
 
 	@Test
 	public void contextLoads() {

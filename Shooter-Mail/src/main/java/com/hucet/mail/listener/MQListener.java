@@ -14,7 +14,7 @@ public interface MQListener {
     @Service
     @Slf4j
     class MQListenerImpl implements MQListener {
-
+        public static final String METHOD_NAME = "onReceiveredMailForCert";
         @Autowired
         MailSendService mailSendService;
 

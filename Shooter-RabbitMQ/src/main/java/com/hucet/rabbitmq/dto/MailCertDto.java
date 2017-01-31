@@ -1,4 +1,4 @@
-package com.hucet.userservice.dto;
+package com.hucet.common.dto;
 
 import lombok.Data;
 import lombok.ToString;

@@ -6,6 +6,22 @@ server:
   use-forward-headers: false
 # Logback 에서 yml 찾지 못함.
 spring.application.name: oauth2-service
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: test
+    password: test
+    virtual-host: /test
+
+    binding:
+      oauth:
+        queue: oauth.queue
+        exchange: oauth.direct
+        rountingKey: oauth.queue
+
+
 logging:
   config: external-config/logback-spring.xml
 

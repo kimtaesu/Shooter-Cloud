@@ -13,13 +13,17 @@ spring:
     port: 5672
     username: test
     password: test
-    virtual-host: /mail
+    virtual-host: /test
 
     binding:
       mail:
         queue: mail.queue
         exchange: mail.direct
         rountingKey: mail.queue
+      oauth:
+        queue: oauth.queue
+        exchange: oauth.direct
+        rountingKey: oauth.queue
 
 
 spring.profiles.active: mysql
