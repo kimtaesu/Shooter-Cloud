@@ -6,9 +6,3 @@ server:
 spring.application.name: gateway-server
 logging:
   config: external-config/logback-spring.xml
-
-security:
-  oauth2:
-    client:
-      accessTokenUri: http://localhost:9000/oauth/token
-      userAuthorizationUri: /oauth/authorize

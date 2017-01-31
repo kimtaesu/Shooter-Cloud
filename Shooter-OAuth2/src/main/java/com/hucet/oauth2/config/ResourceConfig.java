@@ -22,7 +22,7 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
 //         @formatter:off
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/uaa/**").permitAll()
                 .and()
                 .csrf().disable()
                 .headers().frameOptions().disable()

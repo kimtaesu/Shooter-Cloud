@@ -2,7 +2,7 @@ rootProject.name = 'Shooter-Cloud'
 include 'Shooter-GateWay'
 include 'Shooter-CentralConfig'
 include 'Shooter-Register'
-include 'Shooter-RestDemo'
+include 'Shooter-UserService'
 // module
 include 'Shooter-JHipster'
 include 'Shooter-OAuth2'

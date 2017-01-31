@@ -1,20 +1,23 @@
 spring:
   cloud:
     config:
-      uri: http://localhost:8888:
+      uri: http://localhost:8888
       failFast: false
 
 zuul:
+  prefix: /api/v1
+
   routes:
-    rest:
-      path: /restaa/**
-      serviceId: restdemo
+    user-service:
+      path: /user/**
+      serviceId: user-service
     uaa-service:
       sensitiveHeaders:
       path: /uaa/**
       serviceId: oauth2-service
       stripPrefix: false
   add-proxy-headers: true
+
 eureka:
   client:
     service-url:
