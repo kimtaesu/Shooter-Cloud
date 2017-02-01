@@ -1,4 +1,4 @@
-package com.hucet.common.dto;
+package com.hucet.rabbitmq.dto;
 
 import lombok.Data;
 import lombok.ToString;

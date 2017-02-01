@@ -1,9 +1,9 @@
 package com.hucet.oauth2.config;
 
 
-import com.hucet.common.dto.OAuth2UserDto;
 import com.hucet.oauth2.service.OAuthUserService;
 import com.hucet.rabbitmq.binder.AbstractRabbitMQBindConfig;
+import com.hucet.rabbitmq.dto.OAuth2UserDto;
 import com.hucet.rabbitmq.properties.DecorBindRabbitMQProperties;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

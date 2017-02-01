@@ -1,7 +1,6 @@
 package com.hucet.mail.config;
 
 
-import com.hucet.common.dto.MailCertDto;
 import com.hucet.rabbitmq.binder.AbstractRabbitMQBindConfig;
 import com.hucet.rabbitmq.properties.BindRabbitMQProperties;
 import com.hucet.rabbitmq.properties.DecorBindRabbitMQProperties;

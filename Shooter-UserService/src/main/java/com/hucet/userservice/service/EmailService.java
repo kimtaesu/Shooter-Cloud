@@ -1,6 +1,6 @@
 package com.hucet.userservice.service;
 
-import com.hucet.common.dto.MailCertDto;
+import com.hucet.rabbitmq.dto.MailCertDto;
 import com.hucet.rabbitmq.properties.BindRabbitMQProperties;
 import com.hucet.rabbitmq.properties.DecorBindRabbitMQProperties;
 import com.hucet.userservice.dto.AccountDto;

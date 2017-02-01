@@ -1,8 +1,8 @@
 package com.hucet.oauth2.service;
 
-import com.hucet.common.dto.OAuth2UserDto;
 import com.hucet.oauth2.domain.OAuthAccount;
 import com.hucet.oauth2.repository.OAuthAccountDao;
+import com.hucet.rabbitmq.dto.OAuth2UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
