@@ -1,6 +1,7 @@
 package com.hucet.oauth2.service;
 
 import com.hucet.oauth2.domain.OAuthAccount;
+import com.hucet.oauth2.enums.RoleType;
 import com.hucet.oauth2.repository.OAuthAccountDao;
 import com.hucet.rabbitmq.dto.OAuth2UserDto;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,9 @@ public interface OAuthUserService {
         OAuthAccountDao oAuthAccountDao;
 
         @Autowired
+        RoleService roleService;
+
+        @Autowired
         ModelMapper modelMapper;
 
         @Override
@@ -30,7 +34,9 @@ public interface OAuthUserService {
                 return;
             }
             OAuthAccount account = modelMapper.map(dto, OAuthAccount.class);
-            account = oAuthAccountDao.save(account);
+            if (roleService.getRoleType(RoleType.ROLE_USER).isPresent()) {
+                oAuthAccountDao.save(account);
+            }
         }
     }
 }

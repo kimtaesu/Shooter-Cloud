@@ -1,23 +1,23 @@
 CREATE TABLE role (
-  role_id   BIGINT      NOT NULL AUTO_INCREMENT,
-  role_type VARCHAR(10) NOT NULL,
+  role_id   bigint(20)      NOT NULL AUTO_INCREMENT,
+  role_type VARCHAR(255) NOT NULL,
   PRIMARY KEY (role_id)
 );
 
 CREATE TABLE oauth (
-  oauth_id                   BIGINT       NOT NULL AUTO_INCREMENT,
-  is_account_non_expired     BIT          NOT NULL,
-  is_account_non_locked      BIT          NOT NULL,
-  is_credentials_non_expired BIT          NOT NULL,
-  is_enabled                 BIT          NOT NULL,
+  oauth_id                   bigint(20)       NOT NULL AUTO_INCREMENT,
+  is_account_non_expired     boolean          NOT NULL,
+  is_account_non_locked      boolean          NOT NULL,
+  is_credentials_non_expired boolean          NOT NULL,
+  is_enabled                 boolean          NOT NULL,
   password                   VARCHAR(255) NOT NULL,
-  user_name                  VARCHAR(255),
+  user_name                  VARCHAR(255) NOT NULL,
   PRIMARY KEY (oauth_id)
 );
 
 CREATE TABLE user_role (
-  user_id BIGINT NOT NULL,
-  role_id BIGINT NOT NULL,
+  user_id bigint NOT NULL,
+  role_id bigint NOT NULL,
   PRIMARY KEY (user_id, role_id)
 );
 

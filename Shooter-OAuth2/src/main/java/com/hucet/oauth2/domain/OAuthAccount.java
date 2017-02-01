@@ -1,5 +1,6 @@
 package com.hucet.oauth2.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,6 +46,9 @@ public class OAuthAccount {
     private boolean isCredentialsNonExpired = true;
 
     @ManyToMany
+    @Setter(AccessLevel.PRIVATE)
     @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private Set<Role> roles = new HashSet<>();
+
+
 }
