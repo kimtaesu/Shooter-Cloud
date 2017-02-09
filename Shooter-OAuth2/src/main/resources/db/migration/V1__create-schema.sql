@@ -12,6 +12,7 @@ CREATE TABLE oauth (
   is_enabled                 boolean          NOT NULL,
   password                   VARCHAR(255) NOT NULL,
   user_name                  VARCHAR(255) NOT NULL,
+  user_email                  VARCHAR(255) NOT NULL,
   PRIMARY KEY (oauth_id)
 );
 
@@ -23,6 +24,8 @@ CREATE TABLE user_role (
 
 ALTER TABLE oauth
   ADD CONSTRAINT UK_kghivrmr1fqpfjf26ow64hhj6 UNIQUE (user_name);
+ALTER TABLE oauth
+ADD CONSTRAINT UK_c5bnwhs249w1yy5pb1r69ir4b UNIQUE (user_email);
 ALTER TABLE user_role
   ADD CONSTRAINT FKa68196081fvovjhkek5m97n3y FOREIGN KEY (role_id) REFERENCES role (role_id);
 ALTER TABLE user_role

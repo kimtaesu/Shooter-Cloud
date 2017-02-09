@@ -1,12 +1,14 @@
 package com.hucet.oauth2.config.rabbitmq;
 
 
+import com.hucet.oauth2.service.OAuthUserService;
 import com.hucet.rabbitmq.binder.AbstractRabbitMQBindConfig;
 import com.hucet.rabbitmq.dto.OAuth2UserDto;
 import com.hucet.rabbitmq.properties.BindRabbitMQProperties;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -48,8 +50,11 @@ public class OAuthRabbitMQConfigur extends AbstractRabbitMQBindConfig<OAuth2User
                 .noargs();
     }
 
+    @Autowired
+    OAuthUserService oAuthUserService;
+
     @Override
-    public void onReceivedMessage(OAuth2UserDto dto) {
-        log.info("dtodtodto");
+    public void handleMessage(OAuth2UserDto dto) {
+        oAuthUserService.addOAuth2User(dto);
     }
 }

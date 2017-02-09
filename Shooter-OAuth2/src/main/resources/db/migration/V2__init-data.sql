@@ -8,6 +8,8 @@ insert into oauth (
   is_credentials_non_expired,
   is_enabled,
   password,
-  user_name)
-  values (null, 1, 1, 1, 1, 'test', 'test1');
+  user_name,
+  user_email)
+  values (null, 1, 1, 1, 1, 'test', 'test1', 'test@testt1.coas');
+
 insert into user_role (user_id, role_id) values (1, 2);

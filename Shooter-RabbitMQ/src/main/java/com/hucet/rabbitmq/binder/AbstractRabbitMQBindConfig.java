@@ -40,6 +40,10 @@ public abstract class AbstractRabbitMQBindConfig<T> implements MQListener<T> {
     @Bean
     MessageListenerAdapter listenerAdapter() {
         MessageListenerAdapter adapter = new MessageListenerAdapter(this);
+        // RabbitMQ Defualt Method Name은 "handlerMessage" 이다.
+        // 그 외 다른 명칭으로 구현할려면 아래의 함수로 Method 명을 지정해줘야한다.
+        // 이게 무슨 경우인가...
+//        adapter.setDefaultListenerMethod("Your method name");
         adapter.setMessageConverter(jsonMessageConverter());
         return adapter;
     }

@@ -34,6 +34,9 @@ public class OAuthAccount {
     @Column(unique = true)
     private String userName;
 
+    @Column(unique = true)
+    private String userEmail;
+
     @Column(nullable = false)
     private String password;
 
