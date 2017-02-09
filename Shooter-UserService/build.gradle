@@ -7,4 +7,6 @@ dependencies {
     compile('mysql:mysql-connector-java')
 
     compile project(':Shooter-RabbitMQ')
+    compile project(':Shooter-Common')
+    compile('org.modelmapper:modelmapper:0.7.7')
 }

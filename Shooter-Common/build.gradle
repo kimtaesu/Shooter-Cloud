@@ -1,0 +1,12 @@
+dependencies {
+    compile('org.modelmapper:modelmapper:0.7.7')
+    compile('org.springframework.boot:spring-boot-starter')
+
+}
+configurations {
+    all*.exclude group: 'org.springframework.cloud'
+    all*.exclude group: 'org.codehaus.janino'
+    all*.exclude group: 'net.logstash.logback'
+    all*.exclude group: 'org.codehaus.janino'
+    all*.exclude group: 'com.cwbase'
+}

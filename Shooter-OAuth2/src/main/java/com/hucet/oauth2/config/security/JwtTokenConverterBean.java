@@ -1,4 +1,4 @@
-package com.hucet.oauth2.config;
+package com.hucet.oauth2.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

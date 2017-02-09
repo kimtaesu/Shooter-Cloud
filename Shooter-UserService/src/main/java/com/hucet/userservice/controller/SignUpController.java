@@ -1,7 +1,6 @@
 package com.hucet.userservice.controller;
 
 import com.hucet.userservice.dto.AccountDto;
-import com.hucet.userservice.error.exception.DuplicatedException;
 import com.hucet.userservice.service.AccountService;
 import com.hucet.userservice.service.EmailService;
 import com.hucet.userservice.service.OAuth2UserService;
@@ -36,11 +35,9 @@ public class SignUpController {
             // TODO Exception
             throw new ValidationException(result.toString());
         }
-
         userService.newUser(user);
-
         // TODO Transaction dabase for user
-//        oAuth2UserService.notifyOAuthUserAdded(user, rabbitTemplate);
+        oAuth2UserService.syncOAuthUserAdded(user);
 //        emailService.notifyEmailCert(user, rabbitTemplate);
         return null;
     }

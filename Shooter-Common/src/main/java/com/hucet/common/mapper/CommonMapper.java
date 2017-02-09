@@ -1,4 +1,4 @@
-package com.hucet.userservice.mapper;
+package com.hucet.common.mapper;
 
 import org.modelmapper.Condition;
 import org.modelmapper.ModelMapper;

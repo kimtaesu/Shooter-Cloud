@@ -13,4 +13,7 @@ public interface AccountDao extends Repository<Account, Long> {
     Account save(Account newAccount);
 
     Optional<Account> findByUserName(String userName);
+
+    Optional<Account> findByUserEmail(String userEmail);
+
 }

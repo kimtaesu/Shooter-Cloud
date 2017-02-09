@@ -1,4 +1,4 @@
-package com.hucet.oauth2.config;
+package com.hucet.oauth2.config.security;
 
 import com.hucet.oauth2.enums.GrantType;
 import com.hucet.oauth2.enums.RoleType;

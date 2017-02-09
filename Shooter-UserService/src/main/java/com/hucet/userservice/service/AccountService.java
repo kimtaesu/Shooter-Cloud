@@ -1,8 +1,8 @@
 package com.hucet.userservice.service;
 
+import com.hucet.common.exception.client.DuplicatedFieldException;
 import com.hucet.userservice.domain.Account;
 import com.hucet.userservice.dto.AccountDto;
-import com.hucet.userservice.error.exception.DuplicatedException;
 import com.hucet.userservice.repository.AccountDao;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -27,6 +27,8 @@ public interface AccountService {
         @Autowired
         ModelMapper modelMapper;
 
+        @Autowired
+        OAuth2UserService oAuth2UserService;
 
         @Override
         public Account newUser(AccountDto.ApplicationRequest applicationRequest) {
@@ -34,10 +36,21 @@ public interface AccountService {
                     .isPresent();
             if (exist) {
                 // TODO EXCEPTION
-                throw new DuplicatedException("동일한 UserName이 존재합니다.");
+                throw new DuplicatedFieldException("동일한 사용자명이 존재합니다.");
             }
+
+            exist = accountDao.findByUserEmail(applicationRequest.getUserEmail())
+                    .isPresent();
+            if (exist) {
+                // TODO EXCEPTION
+                throw new DuplicatedFieldException("동일한 이메일이 존재합니다.");
+            }
+
             Account account = modelMapper.map(applicationRequest, Account.class);
             account = accountDao.save(account);
+
+            oAuth2UserService.syncOAuthUserAdded(applicationRequest);
+
             return account;
         }
     }

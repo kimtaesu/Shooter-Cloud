@@ -1,8 +1,5 @@
 package com.hucet.userservice.service;
 
-import com.hucet.rabbitmq.dto.MailCertDto;
-import com.hucet.rabbitmq.properties.BindRabbitMQProperties;
-import com.hucet.rabbitmq.properties.DecorBindRabbitMQProperties;
 import com.hucet.userservice.dto.AccountDto;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -24,24 +21,22 @@ public interface EmailService {
     @Transactional
     @Slf4j
     class Impl implements EmailService {
-        @Autowired
-        DecorBindRabbitMQProperties decorBindRabbitMQProperties;
 
         @Autowired
         ModelMapper mapper;
 
         @Override
         public void notifyEmailCert(AccountDto.ApplicationRequest dto, RabbitTemplate rabbitTemplate) {
-            BindRabbitMQProperties.BindingProperties bindingProperties = decorBindRabbitMQProperties.getMailBinding();
-            if (bindingProperties != null) {
-                MailCertDto mailCertDto = mapper.map(dto, MailCertDto.class);
-                rabbitTemplate.setMessageConverter(jsonMessageConverter());
-                rabbitTemplate.convertAndSend(bindingProperties.getExchange(),
-                        bindingProperties.getRountingKey(),
-                        mailCertDto);
-            } else {
-                throw new RuntimeException("can't not inject a mail of binding key");
-            }
+//            BindRabbitMQProperties.BindingProperties bindingProperties = decorBindRabbitMQProperties.getMailBinding();
+//            if (bindingProperties != null) {
+//                MailCertDto mailCertDto = mapper.map(dto, MailCertDto.class);
+//                rabbitTemplate.setMessageConverter(jsonMessageConverter());
+//                rabbitTemplate.convertAndSend(bindingProperties.getExchange(),
+//                        bindingProperties.getRountingKey(),
+//                        mailCertDto);
+//            } else {
+//                throw new RuntimeException("can't not inject a mail of binding key");
+//            }
 
         }
 
