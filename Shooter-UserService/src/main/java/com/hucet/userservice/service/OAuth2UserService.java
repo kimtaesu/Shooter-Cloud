@@ -1,14 +1,12 @@
 package com.hucet.userservice.service;
 
 import com.hucet.common.exception.server.MQBindingConfigException;
-import com.hucet.common.exception.server.MQReceiveTimeoutRestException;
 import com.hucet.rabbitmq.dto.OAuth2UserDto;
 import com.hucet.rabbitmq.properties.BindRabbitMQProperties;
 import com.hucet.userservice.dto.AccountDto;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,9 +24,6 @@ public interface OAuth2UserService {
 
         @Autowired
         ModelMapper mapper;
-
-        @Autowired
-        MessageConverter messageConverter;
 
         @Autowired
         RabbitTemplate rabbitTemplate;
@@ -53,12 +48,11 @@ public interface OAuth2UserService {
         @Override
         public void syncOAuthUserAdded(AccountDto.ApplicationRequest dto) {
             OAuth2UserDto auth2UserDto = mapper.map(dto, OAuth2UserDto.class);
-            rabbitTemplate.setMessageConverter(messageConverter);
-            Object received = rabbitTemplate.convertSendAndReceive(getOAuthProperty(bindRabbitMQProperties).getExchange(),
+            rabbitTemplate.convertAndSend(getOAuthProperty(bindRabbitMQProperties).getExchange(),
                     getOAuthProperty(bindRabbitMQProperties).getRountingKey(),
                     auth2UserDto);
-            if (received == null)
-                throw new MQReceiveTimeoutRestException("인증 서버로 부터 응답이 없습니다.");
+//            if (received == null)
+//                throw new MQReceiveTimeoutRestException("인증 서버로 부터 응답이 없습니다.");
         }
     }
 }

@@ -36,8 +36,6 @@ public class SignUpController {
             throw new ValidationException(result.toString());
         }
         userService.newUser(user);
-        // TODO Transaction dabase for user
-        oAuth2UserService.syncOAuthUserAdded(user);
 //        emailService.notifyEmailCert(user, rabbitTemplate);
         return null;
     }
