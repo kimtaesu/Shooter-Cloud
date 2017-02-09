@@ -2,6 +2,7 @@ package com.hucet.userservice.service;
 
 import com.hucet.userservice.domain.Account;
 import com.hucet.userservice.dto.AccountDto;
+import com.hucet.userservice.error.exception.DuplicatedException;
 import com.hucet.userservice.repository.AccountDao;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -29,11 +30,11 @@ public interface AccountService {
 
         @Override
         public Account newUser(AccountDto.ApplicationRequest applicationRequest) {
-            boolean exist = accountDao.findByUserName(applicationRequest.getUserEmail())
+            boolean exist = accountDao.findByUserName(applicationRequest.getUserName())
                     .isPresent();
             if (exist) {
                 // TODO EXCEPTION
-                throw new RuntimeException("Duplicated Object");
+                throw new DuplicatedException("동일한 UserName이 존재합니다.");
             }
             Account account = modelMapper.map(applicationRequest, Account.class);
             account = accountDao.save(account);
