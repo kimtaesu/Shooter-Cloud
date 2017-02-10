@@ -2,11 +2,9 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
 
-
     compile('com.h2database:h2')
     compile('mysql:mysql-connector-java')
-
+    compile('org.flywaydb:flyway-core')
     compile project(':Shooter-RabbitMQ')
     compile project(':Shooter-Common')
-    compile('org.modelmapper:modelmapper:0.7.7')
 }
