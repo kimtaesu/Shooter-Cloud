@@ -8,4 +8,5 @@ dependencies {
     compile('org.springframework:spring-context-support')
     compile "com.google.guava:guava:16+"
     compile project(':Shooter-RabbitMQ')
+    compile project(':Shooter-Common')
 }

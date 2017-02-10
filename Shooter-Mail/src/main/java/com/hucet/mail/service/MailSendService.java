@@ -1,8 +1,8 @@
 package com.hucet.mail.service;
 
 import com.hucet.mail.MailContentConstructor;
-import com.hucet.mail.dto.MailCertDtoFromMQ;
 import com.hucet.mail.type.EmailType;
+import com.hucet.rabbitmq.dto.MailCertDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,14 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
-import javax.validation.Valid;
 
 /**
  * Created by taesu on 2017-01-26.
  */
 public interface MailSendService {
     @Async(value = "emailExecutor")
-    void mailSend(EmailType type, MailCertDtoFromMQ dto);
+    void mailSend(EmailType type, MailCertDto dto);
 
     @Service
     @Transactional
@@ -32,7 +31,7 @@ public interface MailSendService {
         MailContentConstructor mailContentConstructor;
 
         @Override
-        public void mailSend(EmailType type, @Valid MailCertDtoFromMQ dto) {
+        public void mailSend(EmailType type, MailCertDto dto) {
             switch (type) {
                 case EMAIL_CERT:
                     log.info("sent mail : {}", dto.getUserEmail(), dto.getUserName());

@@ -6,6 +6,7 @@ import com.hucet.userservice.dto.AccountDto;
 import com.hucet.userservice.repository.AccountDao;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,11 @@ public interface AccountService {
         @Autowired
         OAuth2UserService oAuth2UserService;
 
+        @Autowired
+        EmailService emailService;
+        @Autowired
+        RabbitTemplate rabbitTemplate;
+
         @Override
         public Account newUser(AccountDto dto) {
             boolean exist = accountDao.findByUserName(dto.getUserName())
@@ -53,8 +59,8 @@ public interface AccountService {
             Account account = modelMapper.map(dto, Account.class);
             account = accountDao.save(account);
 
-            oAuth2UserService.syncOAuthUserAdded(dto);
-
+//            oAuth2UserService.syncOAuthUserAdded(rabbitTemplate, dto);
+            emailService.notifyEmailCert(rabbitTemplate, dto);
             return account;
         }
 

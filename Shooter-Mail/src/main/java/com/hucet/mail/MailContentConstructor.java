@@ -1,8 +1,8 @@
 package com.hucet.mail;
 
-import com.hucet.mail.dto.MailCertDtoFromMQ;
 import com.hucet.mail.properties.MailConfProperties;
 import com.hucet.mail.type.EmailType;
+import com.hucet.rabbitmq.dto.MailCertDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -29,7 +29,7 @@ public class MailContentConstructor {
     @Autowired
     TemplateEngine templateEngine;
 
-    public MimeMessage createMimeMessageForEmailCertification(MailCertDtoFromMQ dto) throws MessagingException {
+    public MimeMessage createMimeMessageForEmailCertification(MailCertDto dto) throws MessagingException {
         final MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         final MimeMessageHelper message; // true = multipart
@@ -45,7 +45,7 @@ public class MailContentConstructor {
         return mimeMessage;
     }
 
-    private String createHtmlContentForEmailCertification(EmailType emailCert, MailCertDtoFromMQ dto) {
+    private String createHtmlContentForEmailCertification(EmailType emailCert, MailCertDto dto) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
         // Create the HTML body using Thymeleaf
