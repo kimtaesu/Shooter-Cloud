@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by taesu on 2017-01-31.
  */
 public interface EmailService {
-    void notifyEmailCert(AccountDto.ApplicationRequest dto, RabbitTemplate rabbitTemplate);
+    void notifyEmailCert(AccountDto dto, RabbitTemplate rabbitTemplate);
 
     @Service
     @Transactional
@@ -26,7 +26,7 @@ public interface EmailService {
         ModelMapper mapper;
 
         @Override
-        public void notifyEmailCert(AccountDto.ApplicationRequest dto, RabbitTemplate rabbitTemplate) {
+        public void notifyEmailCert(AccountDto dto, RabbitTemplate rabbitTemplate) {
 //            BindRabbitMQProperties.BindingProperties bindingProperties = decorBindRabbitMQProperties.getMailBinding();
 //            if (bindingProperties != null) {
 //                MailCertDto mailCertDto = mapper.map(dto, MailCertDto.class);

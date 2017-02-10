@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by taesu on 2017-01-31.
  */
 public interface OAuth2UserService {
-    Object syncOAuthUserAdded(AccountDto.ApplicationRequest dto);
+    Object syncOAuthUserAdded(AccountDto dto);
 
     @Service
     @Transactional
@@ -47,7 +47,7 @@ public interface OAuth2UserService {
         }
 
         @Override
-        public Object syncOAuthUserAdded(AccountDto.ApplicationRequest dto) {
+        public Object syncOAuthUserAdded(AccountDto dto) {
             OAuth2UserDto auth2UserDto = mapper.map(dto, OAuth2UserDto.class);
             Object isSuccess = rabbitTemplate.convertSendAndReceive(getOAuthProperty(bindRabbitMQProperties).getExchange(),
                     getOAuthProperty(bindRabbitMQProperties).getRountingKey(),

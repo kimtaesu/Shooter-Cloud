@@ -15,7 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface AccountService {
 
-    Account newUser(AccountDto.ApplicationRequest applicationRequest);
+    Account newUser(AccountDto applicationRequest);
+
+    Boolean duplicatedUserName(String userName);
+
+    Boolean duplicatedUserEmail(String userEmail);
 
     @Service
     @Transactional
@@ -31,28 +35,37 @@ public interface AccountService {
         OAuth2UserService oAuth2UserService;
 
         @Override
-        public Account newUser(AccountDto.ApplicationRequest applicationRequest) {
-            boolean exist = accountDao.findByUserName(applicationRequest.getUserName())
+        public Account newUser(AccountDto dto) {
+            boolean exist = accountDao.findByUserName(dto.getUserName())
                     .isPresent();
             if (exist) {
                 // TODO EXCEPTION
                 throw new DuplicatedFieldException("동일한 사용자명이 존재합니다.");
             }
 
-            exist = accountDao.findByUserEmail(applicationRequest.getUserEmail())
+            exist = accountDao.findByUserEmail(dto.getUserEmail())
                     .isPresent();
             if (exist) {
                 // TODO EXCEPTION
                 throw new DuplicatedFieldException("동일한 이메일이 존재합니다.");
             }
 
-            Account account = modelMapper.map(applicationRequest, Account.class);
+            Account account = modelMapper.map(dto, Account.class);
             account = accountDao.save(account);
 
-            oAuth2UserService.syncOAuthUserAdded(applicationRequest);
+            oAuth2UserService.syncOAuthUserAdded(dto);
 
             return account;
         }
-    }
 
+        @Override
+        public Boolean duplicatedUserName(String userName) {
+            return accountDao.findByUserName(userName).isPresent();
+        }
+
+        @Override
+        public Boolean duplicatedUserEmail(String userEmail) {
+            return accountDao.findByUserEmail(userEmail).isPresent();
+        }
+    }
 }
