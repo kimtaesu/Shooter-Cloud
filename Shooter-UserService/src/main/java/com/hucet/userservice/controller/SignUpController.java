@@ -1,5 +1,6 @@
 package com.hucet.userservice.controller;
 
+import com.hucet.userservice.domain.Account;
 import com.hucet.userservice.dto.AccountDto;
 import com.hucet.userservice.service.AccountService;
 import com.hucet.userservice.service.EmailService;
@@ -30,13 +31,14 @@ public class SignUpController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Integer signup(@RequestBody @Valid AccountDto.ApplicationRequest user, BindingResult result) {
+    public Long signup(@RequestBody @Valid AccountDto.ApplicationRequest user, BindingResult result) {
         if (result.hasErrors()) {
             // TODO Exception
             throw new ValidationException(result.toString());
         }
-        userService.newUser(user);
+
+        Account account = userService.newUser(user);
 //        emailService.notifyEmailCert(user, rabbitTemplate);
-        return null;
+        return account.getId();
     }
 }

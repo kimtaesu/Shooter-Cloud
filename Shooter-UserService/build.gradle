@@ -7,4 +7,7 @@ dependencies {
     compile('org.flywaydb:flyway-core')
     compile project(':Shooter-RabbitMQ')
     compile project(':Shooter-Common')
+
+    // https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava
+    compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.0.5'
 }

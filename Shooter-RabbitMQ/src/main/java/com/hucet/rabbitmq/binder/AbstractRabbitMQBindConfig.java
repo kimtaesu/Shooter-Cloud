@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(BindRabbitMQProperties.class)
-public abstract class AbstractRabbitMQBindConfig<T> implements MQListener<T> {
+public abstract class AbstractRabbitMQBindConfig<T, R> implements MQListener<T, R> {
 
     @Getter
     @Autowired

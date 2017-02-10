@@ -8,6 +8,7 @@ import com.hucet.rabbitmq.properties.BindRabbitMQProperties;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Data
 @EnableConfigurationProperties(BindRabbitMQProperties.class)
-public class OAuthRabbitMQConfigur extends AbstractRabbitMQBindConfig<OAuth2UserDto> {
+public class OAuthRabbitMQConfigur extends AbstractRabbitMQBindConfig<OAuth2UserDto, Boolean> {
 
     private BindRabbitMQProperties.BindingProperties oauthProperty;
 
@@ -53,8 +54,11 @@ public class OAuthRabbitMQConfigur extends AbstractRabbitMQBindConfig<OAuth2User
     @Autowired
     OAuthUserService oAuthUserService;
 
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
     @Override
-    public void handleMessage(OAuth2UserDto dto) {
-        oAuthUserService.addOAuth2User(dto);
+    public Boolean handleMessage(OAuth2UserDto dto) {
+        return oAuthUserService.addOAuth2User(dto);
     }
 }

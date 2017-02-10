@@ -6,6 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public interface MQListener<T> {
-    public void handleMessage(T dto);
+public interface MQListener<T, R> {
+    public R handleMessage(T dto);
 }

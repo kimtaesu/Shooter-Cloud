@@ -1,5 +1,6 @@
 package com.hucet.userservice.service;
 
+import com.hucet.common.exception.server.BusinessException;
 import com.hucet.common.exception.server.MQBindingConfigException;
 import com.hucet.rabbitmq.dto.OAuth2UserDto;
 import com.hucet.rabbitmq.properties.BindRabbitMQProperties;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by taesu on 2017-01-31.
  */
 public interface OAuth2UserService {
-    void syncOAuthUserAdded(AccountDto.ApplicationRequest dto);
+    Object syncOAuthUserAdded(AccountDto.ApplicationRequest dto);
 
     @Service
     @Transactional
@@ -46,13 +47,16 @@ public interface OAuth2UserService {
         }
 
         @Override
-        public void syncOAuthUserAdded(AccountDto.ApplicationRequest dto) {
+        public Object syncOAuthUserAdded(AccountDto.ApplicationRequest dto) {
             OAuth2UserDto auth2UserDto = mapper.map(dto, OAuth2UserDto.class);
-            rabbitTemplate.convertAndSend(getOAuthProperty(bindRabbitMQProperties).getExchange(),
+            Object isSuccess = rabbitTemplate.convertSendAndReceive(getOAuthProperty(bindRabbitMQProperties).getExchange(),
                     getOAuthProperty(bindRabbitMQProperties).getRountingKey(),
                     auth2UserDto);
-//            if (received == null)
-//                throw new MQReceiveTimeoutRestException("인증 서버로 부터 응답이 없습니다.");
+            if (isSuccess == null) {
+                log.error("Fail to save for user of OAuth");
+                throw new BusinessException("인증 서버 연결을 실패하였습니다.");
+            }
+            return isSuccess;
         }
     }
 }
