@@ -59,8 +59,8 @@ public interface AccountService {
             Account account = modelMapper.map(dto, Account.class);
             account = accountDao.save(account);
 
-//            oAuth2UserService.syncOAuthUserAdded(rabbitTemplate, dto);
-            emailService.notifyEmailCert(rabbitTemplate, dto);
+            oAuth2UserService.syncOAuthUserAdded(rabbitTemplate, dto);
+//            emailService.notifyEmailCert(rabbitTemplate, dto);
             return account;
         }
 

@@ -11,7 +11,6 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -38,29 +37,26 @@ public abstract class AbstractRabbitMQBindConfig<T, R> implements MQListener<T, 
     abstract protected Binding binding();
 
     @Bean
-    MessageListenerAdapter listenerAdapter() {
+    MessageListenerAdapter listenerAdapter(MessageConverter converter) {
         MessageListenerAdapter adapter = new MessageListenerAdapter(this);
         // RabbitMQ Defualt Method Name은 "handlerMessage" 이다.
         // 그 외 다른 명칭으로 구현할려면 아래의 함수로 Method 명을 지정해줘야한다.
         // 이게 무슨 경우인가...
 //        adapter.setDefaultListenerMethod("Your method name");
-        adapter.setMessageConverter(jsonMessageConverter());
+        adapter.setMessageConverter(converter);
         return adapter;
     }
 
     @Bean
     @Autowired
-    SimpleMessageListenerContainer mssageListenerContainer(ConnectionFactory factory, Queue queue, MessageListenerAdapter adapter) {
+    SimpleMessageListenerContainer mssageListenerContainer(ConnectionFactory factory, Queue queue, MessageListenerAdapter adapter, MessageConverter converter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(factory);
         container.setQueues(queue);
         container.setMessageListener(adapter);
-        container.setMessageConverter(jsonMessageConverter());
+        container.setMessageConverter(converter);
         return container;
     }
 
-    @Bean
-    public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
+
 }

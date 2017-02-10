@@ -46,6 +46,8 @@ public interface OAuth2UserService {
         @Override
         public Object syncOAuthUserAdded(RabbitTemplate rabbitTemplate, AccountDto dto) {
             OAuth2UserDto auth2UserDto = mapper.map(dto, OAuth2UserDto.class);
+            rabbitTemplate.setChannelTransacted(true);
+            rabbitTemplate.setReplyTimeout(2000);
             Object isSuccess = rabbitTemplate.convertSendAndReceive(getOAuthProperty(bindRabbitMQProperties).getExchange(),
                     getOAuthProperty(bindRabbitMQProperties).getRountingKey(),
                     auth2UserDto);

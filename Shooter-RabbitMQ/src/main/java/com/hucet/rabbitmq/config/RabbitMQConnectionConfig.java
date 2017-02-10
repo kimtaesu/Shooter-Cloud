@@ -3,6 +3,9 @@ package com.hucet.rabbitmq.config;
 import com.hucet.rabbitmq.properties.BindRabbitMQProperties;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -32,5 +35,17 @@ public class RabbitMQConnectionConfig {
         connectionFactory.setPort(port);
         connectionFactory.setVirtualHost(virtualHost);
         return connectionFactory;
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate() {
+        RabbitTemplate template = new RabbitTemplate(connectionFactory());
+        template.setMessageConverter(jsonMessageConverter());
+        return template;
+    }
+
+    @Bean
+    public MessageConverter jsonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
     }
 }
