@@ -1,16 +1,26 @@
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
-
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.security.oauth:spring-security-oauth2')
     compile('org.springframework.security:spring-security-jwt')
-
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('org.springframework:spring-context-support')
     runtime('com.h2database:h2')
     runtime('mysql:mysql-connector-java')
 
     compile('org.flywaydb:flyway-core')
-    compile project(':Shooter-RabbitMQ')
-    compile project(':Shooter-Common')
+
+    compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
+    // https://mvnrepository.com/artifact/io.reactivex/rxjava
+    compile group: 'io.reactivex', name: 'rxjava', version: '1.2.6'
+// https://mvnrepository.com/artifact/io.projectreactor/reactor-core
+    compile group: 'io.projectreactor', name: 'reactor-core', version: '3.0.4.RELEASE'
+
+    compile 'org.springframework.cloud:spring-cloud-stream-reactive:1.2.0.M1'
+
 }
