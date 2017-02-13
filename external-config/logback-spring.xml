@@ -44,8 +44,8 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="LogFile"/>
-        <appender-ref ref="ErrorFile"/>
+        <!--<appender-ref ref="CONSOLE"/>-->
+        <!--<appender-ref ref="LogFile"/>-->
+        <!--<appender-ref ref="ErrorFile"/>-->
     </root>
 </configuration>

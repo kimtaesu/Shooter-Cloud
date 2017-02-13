@@ -16,11 +16,14 @@ dependencies {
     compile('org.flywaydb:flyway-core')
 
     compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
-    // https://mvnrepository.com/artifact/io.reactivex/rxjava
-    compile group: 'io.reactivex', name: 'rxjava', version: '1.2.6'
+// https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava
+    compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.0.5'
+
 // https://mvnrepository.com/artifact/io.projectreactor/reactor-core
     compile group: 'io.projectreactor', name: 'reactor-core', version: '3.0.4.RELEASE'
 
     compile 'org.springframework.cloud:spring-cloud-stream-reactive:1.2.0.M1'
+
+    compile('org.modelmapper:modelmapper:0.7.7')
 
 }

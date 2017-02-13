@@ -29,8 +29,8 @@ spring:
   jpa:
       show-sql: true
   #      Flyway DB 를 사용하여 데이터 초기화를 위하여 주석
-  #      database: mysql
-  #      hibernate.ddl-auto: create-drop
+      database: mysql
+      hibernate.ddl-auto: create-drop
   rabbitmq:
     host: localhost
     port: 5672
@@ -40,13 +40,15 @@ spring:
   cloud:
       stream:
         bindings:
-#          join-output:
-#            destination: oauth-input
+#         Input
           from-signup:
             consumer:
               maxAttempts: 1
             group: group.signup
             destination: queue.signup
+#            Output
+          reply-signup:
+             destination: queue.reply.signup
         rabbit:
           bindings:
             from-signup:

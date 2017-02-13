@@ -1,14 +1,14 @@
 package com.hucet.oauth2.repository;
 
 
-import com.hucet.oauth2.domain.OAuthAccount;
+import com.hucet.oauth2.domain.OAuth2Account;
 import org.springframework.data.repository.Repository;
 
 import java.util.Optional;
 
-public interface OAuthAccountDao extends Repository<OAuthAccount, Long> {
+public interface OAuthAccountDao extends Repository<OAuth2Account, Long> {
 
-    Optional<OAuthAccount> findByUserName(String userName);
+    Optional<OAuth2Account> findByUserName(String userName);
 
-    OAuthAccount save(OAuthAccount oauthAccount);
+    OAuth2Account save(OAuth2Account oauth2Account);
 }

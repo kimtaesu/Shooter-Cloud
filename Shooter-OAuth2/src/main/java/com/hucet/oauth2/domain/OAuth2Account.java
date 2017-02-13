@@ -25,7 +25,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "OAUTH")
-public class OAuthAccount {
+public class OAuth2Account {
     @Id
     @GeneratedValue
     @Column(name = "OAUTH_ID")

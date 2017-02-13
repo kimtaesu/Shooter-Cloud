@@ -1,7 +1,7 @@
 package com.hucet.userservice.controller;
 
 import com.hucet.userservice.dto.AccountDto;
-import com.hucet.userservice.service.AccountStreamService;
+import com.hucet.userservice.stream.AccountStreamService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,6 @@ class SignUpController {
         if (result.hasErrors()) {
             throw new ValidationException(result.toString());
         }
-        String value = "{\"value\":\"hi\"}";
         accountStreamService.accountSend(user);
         return new Long(1);
     }

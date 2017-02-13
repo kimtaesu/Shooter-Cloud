@@ -1,6 +1,6 @@
 package com.hucet.oauth2.service;
 
-import com.hucet.oauth2.domain.OAuthAccount;
+import com.hucet.oauth2.domain.OAuth2Account;
 import com.hucet.oauth2.repository.OAuthAccountDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,12 +31,12 @@ public class OAuth2UserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<OAuthAccount> account = oAuthAccountDao.findByUserName(username);
+        Optional<OAuth2Account> account = oAuthAccountDao.findByUserName(username);
 
         if (!account.isPresent()) {
             throw new UsernameNotFoundException(String.format("Account %s does not exist!", username));
         }
-        OAuthAccount authAccount = account.get();
+        OAuth2Account authAccount = account.get();
         return new User(authAccount.getUserName(),
                 authAccount.getPassword(),
                 authAccount.isEnabled(),
