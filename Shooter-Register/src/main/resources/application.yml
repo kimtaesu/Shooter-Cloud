@@ -1,8 +1,4 @@
 server:
   port: 8761
 
-# Logback 에서 yml 찾지 못함.
 spring.application.name: server-discovery
-
-logging:
-  config: external-config/logback-spring.xml

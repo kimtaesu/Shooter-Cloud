@@ -27,6 +27,7 @@ subprojects {
     apply plugin: 'org.springframework.boot'
 
     dependencies {
+        compile('org.springframework.cloud:spring-cloud-starter-eureka')
         compile('org.projectlombok:lombok:1.16.6')
     }
     sourceCompatibility = 1.8

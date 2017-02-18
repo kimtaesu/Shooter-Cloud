@@ -6,11 +6,12 @@ spring:
 
 zuul:
   prefix: /api/v1
-
   routes:
     user-service:
       path: /user/**
       serviceId: user-service
+      stripPrefix: false
+
     uaa-service:
       sensitiveHeaders:
       path: /uaa/**

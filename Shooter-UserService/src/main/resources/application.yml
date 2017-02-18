@@ -1,8 +1,8 @@
 server:
   port: 8081
 
-# Logback 에서 yml 찾지 못함.
 spring.application.name: user-service
+
 spring.profiles.active: init, mysql
 #spring:
 #  data:

@@ -1,8 +1,13 @@
 server:
   port: 9000
-  aop:
-    proxyTargetClass: true
-# Logback 에서 yml 찾지 못함.
-spring.application.name: gateway-server
-logging:
-  config: external-config/logback-spring.xml
+
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:8081/user/{userName}
+      preferTokenInfo: false
+
+proxy:
+  auth:
+    routes:
+      uaa-service: uaa-service
