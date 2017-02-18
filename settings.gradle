@@ -5,7 +5,7 @@ rootProject.name = 'Shooter-Cloud'
 include 'Shooter-UserService'
 // module
 //include 'Shooter-JHipster'
-include 'Shooter-OAuth2'
+//include 'Shooter-OAuth2'
 //include 'Shooter-Mail'
 //include 'Shooter-RabbitMQ'
 //include 'Shooter-Common'

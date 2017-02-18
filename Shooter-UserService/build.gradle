@@ -7,16 +7,7 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
-    compile('com.h2database:h2')
-    compile('mysql:mysql-connector-java')
-    compile('org.flywaydb:flyway-core')
-// https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava
-    compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.0.5'
-
-// https://mvnrepository.com/artifact/io.projectreactor/reactor-core
-    compile group: 'io.projectreactor', name: 'reactor-core', version: '3.0.4.RELEASE'
-
-    compile 'org.springframework.cloud:spring-cloud-stream-reactive:1.2.0.M1'
-
+//    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+    runtime('mysql:mysql-connector-java')
+    compile('org.modelmapper:modelmapper:0.7.7')
 }
