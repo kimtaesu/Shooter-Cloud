@@ -1,8 +1,8 @@
-package com.hucet.oauth2.repository;
+package com.hucet.security.repository;
 
 
-import com.hucet.oauth2.domain.Role;
-import com.hucet.oauth2.enums.RoleType;
+import com.hucet.security.domain.Role;
+import com.hucet.security.enums.RoleType;
 import org.springframework.data.repository.Repository;
 
 import java.util.Optional;

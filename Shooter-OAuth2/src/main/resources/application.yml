@@ -3,17 +3,16 @@ server:
   port: 9999
   # Use different context-path to avoid session cookie overlapping
   context-path: /uaa
-  use-forward-headers: false
 # Logback 에서 yml 찾지 못함.
 spring.application.name: oauth2-service
 
-
-logging:
-  config: external-config/logback-spring.xml
+spring.profiles.active: mysql
 
 spring:
+  profiles:
+    active: mysql
   datasource:
-      url: jdbc:mysql://localhost:3306/oauth_service?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://192.168.99.100:3306/oauth_service?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: test
       password: test
       driver-class-name: com.mysql.jdbc.Driver
@@ -31,29 +30,3 @@ spring:
   #      Flyway DB 를 사용하여 데이터 초기화를 위하여 주석
       database: mysql
       hibernate.ddl-auto: create-drop
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: test
-    password: test
-    virtual-host: /test
-  cloud:
-      stream:
-        bindings:
-#         Input
-          from-signup:
-            consumer:
-              maxAttempts: 1
-            group: group.signup
-            destination: queue.signup
-#            Output
-          reply-signup:
-             destination: queue.reply.signup
-        rabbit:
-          bindings:
-            from-signup:
-              consumer:
-                requeueRejected: false
-                autoBindDlq: true
-                republishToDlq : true
-                transacted: true

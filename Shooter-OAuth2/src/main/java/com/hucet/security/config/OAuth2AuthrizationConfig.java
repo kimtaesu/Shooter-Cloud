@@ -1,8 +1,8 @@
-package com.hucet.oauth2.config.security;
+package com.hucet.security.config;
 
-import com.hucet.oauth2.enums.GrantType;
-import com.hucet.oauth2.enums.RoleType;
-import com.hucet.oauth2.enums.ScopeType;
+import com.hucet.security.enums.GrantType;
+import com.hucet.security.enums.RoleType;
+import com.hucet.security.enums.ScopeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;

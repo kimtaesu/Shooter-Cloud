@@ -1,13 +1,8 @@
-repositories {
-    mavenCentral()
-    maven { url "https://repo.spring.io/snapshot" }
-    maven { url "https://repo.spring.io/milestone" }
-}
-
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
 //    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     runtime('mysql:mysql-connector-java')
     compile('org.modelmapper:modelmapper:0.7.7')
+    compile('org.flywaydb:flyway-core')
 }

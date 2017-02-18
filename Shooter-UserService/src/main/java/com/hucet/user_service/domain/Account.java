@@ -29,7 +29,7 @@ import javax.persistence.Id;
 public class Account {
     @Id
     @GeneratedValue
-    @Column(name = "OAUTH_ID")
+    @Column(name = "account_id")
     private Long id;
 
     @Column(unique = true)
@@ -48,7 +48,6 @@ public class Account {
     private boolean isAccountNonLocked = true;
 
     private boolean isCredentialsNonExpired = true;
-
 //    @ManyToMany
 //    @Setter(AccessLevel.PRIVATE)
 //    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))

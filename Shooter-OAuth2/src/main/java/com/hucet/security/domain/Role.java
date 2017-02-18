@@ -1,6 +1,6 @@
-package com.hucet.oauth2.domain;
+package com.hucet.security.domain;
 
-import com.hucet.oauth2.enums.RoleType;
+import com.hucet.security.enums.RoleType;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;

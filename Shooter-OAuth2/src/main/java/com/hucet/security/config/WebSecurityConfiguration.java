@@ -1,4 +1,4 @@
-package com.hucet.oauth2.config.security;
+package com.hucet.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

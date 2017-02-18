@@ -3,7 +3,7 @@ server:
 
 # Logback 에서 yml 찾지 못함.
 spring.application.name: user-service
-spring.profiles.active: mysql
+spring.profiles.active: init, mysql
 #spring:
 #  data:
 #    mongodb:
@@ -31,7 +31,7 @@ spring:
   jpa:
       show-sql: true
   #      Flyway DB 를 사용하여 데이터 초기화를 위하여 주석
-      database: mysql
-      hibernate.ddl-auto: create-drop
+#      database: mysql
+#      hibernate.ddl-auto: create-drop
 
 

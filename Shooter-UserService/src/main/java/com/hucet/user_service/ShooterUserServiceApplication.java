@@ -1,6 +1,5 @@
 package com.hucet.user_service;
 
-import com.hucet.user_service.config.DatabaseInitializer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,14 +15,5 @@ public class ShooterUserServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ShooterUserServiceApplication.class, args);
-    }
-
-    @Bean
-    @Profile("init")
-    CommandLineRunner commandLineRunner(DatabaseInitializer databaseInitializer) {
-        return args -> {
-            // Initialize the database for end to end integration testing
-            databaseInitializer.populate();
-        };
     }
 }

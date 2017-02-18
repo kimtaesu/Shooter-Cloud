@@ -1,4 +1,4 @@
-package com.hucet.oauth2.enums;
+package com.hucet.security.enums;
 
 
 import lombok.Getter;
