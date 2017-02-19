@@ -1,13 +1,10 @@
 server:
   port: 9000
 
+# Define security
 security:
-  oauth2:
-    resource:
-      userInfoUri: http://localhost:8081/user/{userName}
-      preferTokenInfo: false
-
-proxy:
-  auth:
-    routes:
-      uaa-service: uaa-service
+  basic:
+    enabled: false
+#  user:
+#    password: password
+#  ignored: /css/**,/js/**,/favicon.ico,/webjars/**

@@ -4,18 +4,40 @@ spring:
       uri: http://localhost:8888
       failFast: false
 
+security:
+  # Disable Spring Boot basic authentication
+  basic:
+    enabled: false
+  oauth2:
+#    sso:
+#      loginPath: /login
+    client:
+      accessTokenUri: http://localhost:${server.port}/uaa/oauth/token
+      userAuthorizationUri: /uaa/oauth/authorize
+      clientId: aaa
+      clientSecret: aaa
+    resource:
+#      jwt:
+#        keyValue: |
+#          -----BEGIN PUBLIC KEY-----
+#          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjh2F2LoE40YgM5QFYV+EenQbmoJzhFkxcDKPk5OsD9hF4lMvnCsyKW+xxl76VihpIoyR+0E1TvH5T547RZjeTCFyy+a51d7vhYE2ACcJAmUWt8BrS6u4CDPwWadUeivSoxPIPw93CpiJqg8Lwqx3hDGlkIsfKIARTZBiWeo40X4YaguoeO33/sE+b0Vn+8xxXZ9Yiygv8tebJ+mzl5xFR6lYOCuWgFVKOHvV4J3wnD1GGV78joslmCxgmTEZ+fiz5Cw6t9qd0mMg74y8oOoJ6gT432HT8I24aCv5ziw3riS4aGRw/faSjtrxcS3l+e1595rAGt2vc/kPS070m+BUwwIDAQAB
+#          -----END PUBLIC KEY-----
+#        key-uri:
+#      id: openid
+#      serviceId: ${PREFIX:}resource
+      user-info-uri: http://localhost:${server.port}/user/{userName}
+      preferTokenInfo: false
 zuul:
   prefix: /api/v1
   routes:
     user-service:
       path: /user/**
-      serviceId: user-service
+#      serviceId: user-service
       stripPrefix: false
-
     uaa-service:
       sensitiveHeaders:
       path: /uaa/**
-      serviceId: oauth2-service
+#      serviceId: oauth2-service
       stripPrefix: false
   add-proxy-headers: true
 
