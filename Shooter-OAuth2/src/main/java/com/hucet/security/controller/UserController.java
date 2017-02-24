@@ -1,7 +1,6 @@
 package com.hucet.security.controller;
 
 
-import com.hucet.security.domain.Account;
 import com.hucet.security.dto.AccountDto;
 import com.hucet.security.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;

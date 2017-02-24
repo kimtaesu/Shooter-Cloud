@@ -5,6 +5,9 @@ dependencies {
     compile('org.springframework.security:spring-security-jwt')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     runtime('mysql:mysql-connector-java')
-//    compile('org.flywaydb:flyway-core')
+    runtime('org.flywaydb:flyway-core')
     compile('org.modelmapper:modelmapper:0.7.7')
+    // https://mvnrepository.com/artifact/com.google.guava/guava
+    compile group: 'com.google.guava', name: 'guava', version: '21.0'
+
 }

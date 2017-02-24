@@ -76,4 +76,11 @@ public class Account implements UserDetails {
         return isEnabled;
     }
 
+    public void addRole(Role defaultRole) {
+        roles.add(defaultRole);
+    }
+
+    public void addRoles(Collection<Role> roles) {
+        this.roles.addAll(roles);
+    }
 }

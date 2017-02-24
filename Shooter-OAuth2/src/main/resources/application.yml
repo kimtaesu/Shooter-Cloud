@@ -5,7 +5,6 @@ server:
   context-path: /uaa
 
 spring.profiles.active: mysql
-
 spring:
   application:
     name: uaa-service
@@ -28,5 +27,5 @@ spring:
   jpa:
       show-sql: true
   #      Flyway DB 를 사용하여 데이터 초기화를 위하여 주석
-      database: mysql
-      hibernate.ddl-auto: create-drop
+#      database: mysql
+#      hibernate.ddl-auto: create-drop
