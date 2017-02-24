@@ -50,7 +50,7 @@ public class MailContentConstructor {
 
         // Create the HTML body using Thymeleaf
         final Context ctx = new Context();
-        ctx.setVariable("userName", dto);
+        ctx.setVariable("userName", dto.getUserName());
 //        ctx.setVariable("link", dto.getLink());
 //        ctx.setVariable("expiredDate", format.format(dto.getExpiredDate()));
         return this.templateEngine.process(emailCert.getTemplateName(), ctx);

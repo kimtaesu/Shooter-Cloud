@@ -15,4 +15,9 @@ public class MailDto {
     @Email
     @NotEmpty
     private String userEmail;
+
+    public MailDto(String taesu, String s) {
+        userName = taesu;
+        userEmail = s;
+    }
 }
