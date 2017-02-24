@@ -7,7 +7,6 @@ dependencies {
     runtime('mysql:mysql-connector-java')
     runtime('org.flywaydb:flyway-core')
     compile('org.modelmapper:modelmapper:0.7.7')
-    // https://mvnrepository.com/artifact/com.google.guava/guava
-    compile group: 'com.google.guava', name: 'guava', version: '21.0'
 
+    compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
 }

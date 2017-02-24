@@ -20,7 +20,7 @@ public class MailConfProperties {
         private Boolean startTlsRequired;
         private Boolean startTlsEnable;
     }
-
+    private Boolean enable;
     private String host;
     private String protocol;
     private int port;

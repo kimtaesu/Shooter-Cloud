@@ -6,7 +6,6 @@ dependencies {
     compile group: 'javax.mail', name: 'javax.mail-api', version: '1.5.6'
     compile('com.sun.mail:javax.mail')
     compile('org.springframework:spring-context-support')
-    compile "com.google.guava:guava:16+"
-    compile project(':Shooter-RabbitMQ')
-    compile project(':Shooter-Common')
+
+    compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
 }
