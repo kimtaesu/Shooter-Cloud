@@ -1,28 +1,21 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
 import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app-routing.module";
-import "hammerjs";
-import {LoginComponent} from "./login/login.component";
-import {AuthServiceProvider} from "../common/auth/auth-http.provider";
-import {HttpModule} from "@angular/http";
-import {LoginService} from "./login/login-http.service";
+import {HomeComponent} from "./home/home.component";
 import {MaterialModule} from "@angular/material";
-
+import "hammerjs";
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    HomeComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    HttpModule,
     MaterialModule.forRoot(),
   ],
-  providers: [AuthServiceProvider, LoginService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

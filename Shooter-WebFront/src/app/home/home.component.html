@@ -1,3 +1,16 @@
-<router-outlet></router-outlet>
-<button md-raised-button (click)="haha()">asdsad</button>
-<router-outlet></router-outlet>
+<md-toolbar color="primary">
+  <button md-icon-button (click)="sidenav.toggle()">
+    <i class="material-icons demo-toolbar-icon">menu</i>
+  </button>
+  <span> My Heros Application</span>
+</md-toolbar>
+
+<md-sidenav-container class="hundred">
+
+  <md-sidenav #sidenav class="example-sidenav">
+    Jolly good!
+  </md-sidenav>
+
+  <router-outlet></router-outlet>
+
+</md-sidenav-container>

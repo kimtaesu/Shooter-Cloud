@@ -14,6 +14,10 @@ export class LoginComponent {
   constructor(private loginService: LoginService) {
   }
 
+  onJoin() {
+    console.info("onJoin")
+  }
+
   onLogin(/*username: string, password: string*/) {
     console.info("click")
     let user = {
