@@ -6,14 +6,14 @@ import {HomeComponent} from "./home/home.component";
   imports: [
     RouterModule.forRoot([
       {
-        path: '**',
+        path: '',
         redirectTo: '/home',
         pathMatch: 'full',
       },
       {
         path: 'home',
         component: HomeComponent,
-      }
+      },
     ])
   ],
   exports: [RouterModule]

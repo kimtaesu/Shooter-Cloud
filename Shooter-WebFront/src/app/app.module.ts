@@ -5,15 +5,16 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HomeComponent} from "./home/home.component";
 import {MaterialModule} from "@angular/material";
 import "hammerjs";
+import {HomeModule} from "./home/home.module";
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
-    MaterialModule.forRoot(),
+    HomeModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

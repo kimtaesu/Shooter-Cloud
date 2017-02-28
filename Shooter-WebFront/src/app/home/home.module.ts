@@ -1,18 +1,25 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
-import {MaterialModule} from "@angular/material";
-
 import {HomeComponent} from "./home.component";
-import {AppRoutingModule} from "../app-routing.module";
+import {LoginComponent} from "../login/login.component";
+import {MaterialModule} from "@angular/material";
+import {HomeRoutingModule, homepRoutingProviders} from "./home-routing.module";
+import {JoinComponent} from "../join/join.component";
 @NgModule({
   declarations: [
     HomeComponent,
+    LoginComponent,
+    JoinComponent,
   ],
   imports: [
-    AppRoutingModule,
+    HomeRoutingModule,
     BrowserModule,
     FormsModule,
+    MaterialModule.forRoot(),
+  ],
+  providers: [
+    homepRoutingProviders,
   ],
   bootstrap: [HomeComponent]
 })

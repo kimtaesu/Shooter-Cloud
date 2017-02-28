@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-join',
@@ -6,4 +7,7 @@ import {Component} from "@angular/core";
   styleUrls: ['join.component.css']
 })
 export class JoinComponent {
+  constructor(private _router: Router) {
+
+  }
 }
