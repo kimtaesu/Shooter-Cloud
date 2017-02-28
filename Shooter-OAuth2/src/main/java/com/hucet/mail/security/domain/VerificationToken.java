@@ -1,16 +1,17 @@
 package com.hucet.mail.security.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
-//@Entity
+@Entity
 @Data
+@NoArgsConstructor
 public class VerificationToken {
-    private static final int EXPIRATION = 60 * 24;
+    private static final int EXPIRATION_HOUR = 24;
 
     @Id
     @GeneratedValue
@@ -22,12 +23,18 @@ public class VerificationToken {
     @JoinColumn(nullable = false, name = "ACCOUNT_ID")
     private Account account;
 
+    @Temporal(TemporalType.DATE)
     private Date expiryDate;
 
-    private Date calculateExpiryDate(int expiryTimeInMinutes) {
+    public VerificationToken(Account account, String token) {
+        this.account = account;
+        this.token = token;
+        this.expiryDate = calculateExpiryDate();
+    }
+
+    private Date calculateExpiryDate() {
         Calendar cal = Calendar.getInstance();
-        cal.setTime(new Timestamp(cal.getTime().getTime()));
-        cal.add(Calendar.MINUTE, expiryTimeInMinutes);
-        return new Date(cal.getTime().getTime());
+        cal.add(Calendar.HOUR, EXPIRATION_HOUR);
+        return cal.getTime();
     }
 }

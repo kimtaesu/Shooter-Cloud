@@ -28,23 +28,18 @@ public class AccountService {
     @Autowired
     RoleRepository roleRepository;
 
-    @Autowired
-    NotifyMailService notifyMailService;
 
     @Autowired
     ModelMapper modelMapper;
 
-    public Long newAccount(AccountDto dto) {
+    public Account newAccount(AccountDto dto) {
         if (accountRepository.findByUserEmail(dto.getUserEmail()).isPresent()) {
             throw new AlreadyRegisteredException("이미 등록된 사용자입니다.");
         }
         Account account = modelMapper.map(dto, Account.class);
         account.addRole(getDefaultRole());
         account = accountRepository.save(account);
-
-        // notify the mail queue,
-        notifyMailService.notifyCertMail(new MailDto(account.getUsername(), account.getUserEmail()));
-        return account.getId();
+        return account;
     }
 
     public Account getUser(String userName) {
