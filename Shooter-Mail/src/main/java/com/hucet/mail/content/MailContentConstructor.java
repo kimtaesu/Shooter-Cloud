@@ -40,7 +40,7 @@ public class MailContentConstructor {
         message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
         message.setFrom(mailConfProperties.getEmail());
         // TODO Subject
-        message.setSubject("test");
+        message.setSubject("본인 인증 메일");
         message.setTo(dto.getUserEmail());
         final String htmlContent = createHtmlContentForEmailCertification(EmailType.EMAIL_CERT, dto);
 
@@ -58,9 +58,6 @@ public class MailContentConstructor {
         ctx.setVariable("userName", dto.getUserName());
         ctx.setVariable("expiryDate", expiryDate);
         ctx.setVariable("confirmUrl", getConfirmMailUrl(dto));
-//        ctx.setVariable("redirectUrl", );
-//        ctx.setVariable("link", dto.getLink());
-//        ctx.setVariable("expiredDate", format.format(dto.getExpiredDate()));
         return this.templateEngine.process(emailCert.getTemplateName(), ctx);
     }
 

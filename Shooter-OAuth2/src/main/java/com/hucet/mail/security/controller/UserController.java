@@ -17,7 +17,6 @@ import javax.validation.ValidationException;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired

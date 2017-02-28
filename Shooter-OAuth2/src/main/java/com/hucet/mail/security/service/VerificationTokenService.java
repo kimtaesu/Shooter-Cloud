@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Calendar;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,5 +22,22 @@ public class VerificationTokenService {
     public VerificationToken createVerificationToken(Account account, String token) {
         VerificationToken verificationToken = new VerificationToken(account, token);
         return repository.save(verificationToken);
+    }
+
+    public boolean isValid(String token) {
+        Calendar cal = Calendar.getInstance();
+        Optional<VerificationToken> verificationToken = repository.findByToken(token);
+        if (verificationToken.isPresent()) {
+            if (verificationToken.get().getExpiryDate().compareTo(cal.getTime()) > 0) {
+                // valid
+                log.info("success to certicate from mail");
+                return true;
+            } else {
+                log.info("fail to certicate from mail, the reason is expired");
+                // expired
+                return false;
+            }
+        }
+        throw new RuntimeException("asda");
     }
 }

@@ -20,7 +20,6 @@ public class Account implements UserDetails {
     @Column(name = "ACCOUNT_ID")
     private Long id;
 
-    @Column(unique = true)
     private String userName;
     @Getter
     @Column(unique = true)
