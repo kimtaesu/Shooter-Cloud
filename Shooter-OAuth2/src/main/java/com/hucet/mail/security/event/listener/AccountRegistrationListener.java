@@ -5,7 +5,6 @@ import com.hucet.mail.security.domain.VerificationToken;
 import com.hucet.mail.security.event.OnAccountRegistered;
 import com.hucet.mail.security.service.VerificationTokenService;
 import com.hucet.mail.security.stream.NotifyMailService;
-import com.hucet.shared.MailDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -29,11 +28,6 @@ public class AccountRegistrationListener implements ApplicationListener<OnAccoun
         VerificationToken verificationToken = verificationTokenService.createVerificationToken(account, UUID.randomUUID().toString());
 
         // notify the mail queue,
-        notifyMailService.notifyCertMail(new MailDto(account.getUsername(),
-                account.getUserEmail(),
-                verificationToken.getToken(),
-                verificationToken.getExpiryDate().getTime(),
-                // TODO Hypermedia url
-                "http://localhost:9999/uaa/cert/confirm"));
+        notifyMailService.notifyCertMail(account, verificationToken);
     }
 }

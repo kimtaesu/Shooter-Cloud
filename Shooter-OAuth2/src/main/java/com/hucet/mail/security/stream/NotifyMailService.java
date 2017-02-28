@@ -1,5 +1,7 @@
 package com.hucet.mail.security.stream;
 
+import com.hucet.mail.security.domain.Account;
+import com.hucet.mail.security.domain.VerificationToken;
 import com.hucet.mail.security.stream.processor.CertMailProcessor;
 import com.hucet.shared.MailDto;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +17,16 @@ public class NotifyMailService {
     @Autowired
     CertMailProcessor certMailProcessor;
 
-    public void notifyCertMail(MailDto dto) {
+    public void notifyCertMail(Account account, VerificationToken verificationToken) {
+
         certMailProcessor.output().send(
                 MessageBuilder
-                        .withPayload(dto)
+                        .withPayload(new MailDto(account.getUsername(),
+                                account.getUserEmail(),
+                                verificationToken.getToken(),
+                                verificationToken.getExpiryDate().getTime(),
+                                // TODO Hypermedia url
+                                "http://localhost:9999/uaa/mail/confirm"))
                         .build()
         );
     }

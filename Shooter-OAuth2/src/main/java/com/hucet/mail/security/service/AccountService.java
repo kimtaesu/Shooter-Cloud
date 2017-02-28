@@ -40,8 +40,8 @@ public class AccountService {
         return account;
     }
 
-    public Account getUser(String userName) {
-        Optional<Account> accountOptional = accountRepository.findByUserName(userName);
+    public Account getUser(String userEmail) {
+        Optional<Account> accountOptional = accountRepository.findByUserEmail(userEmail);
         if (accountOptional.isPresent()) {
             return accountOptional.get();
         } else {

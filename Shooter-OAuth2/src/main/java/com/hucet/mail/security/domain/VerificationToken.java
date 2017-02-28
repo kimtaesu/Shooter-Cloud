@@ -1,17 +1,17 @@
 package com.hucet.mail.security.domain;
 
+import com.hucet.mail.security.provider.Utils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Calendar;
 import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
 public class VerificationToken {
-    private static final int EXPIRATION_HOUR = 24;
+
 
     @Id
     @GeneratedValue
@@ -29,12 +29,7 @@ public class VerificationToken {
     public VerificationToken(Account account, String token) {
         this.account = account;
         this.token = token;
-        this.expiryDate = calculateExpiryDate();
+        this.expiryDate = Utils.calculateExpiryDate();
     }
 
-    private Date calculateExpiryDate() {
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.HOUR, EXPIRATION_HOUR);
-        return cal.getTime();
-    }
 }
