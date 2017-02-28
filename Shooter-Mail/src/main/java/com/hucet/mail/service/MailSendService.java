@@ -2,8 +2,8 @@ package com.hucet.mail.service;
 
 import com.hucet.mail.content.MailContentConstructor;
 import com.hucet.mail.properties.MailConfProperties;
-import com.hucet.mail.stream.dto.MailDto;
 import com.hucet.mail.type.EmailType;
+import com.hucet.shared.MailDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;

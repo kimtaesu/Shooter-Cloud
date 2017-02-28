@@ -1,18 +1,21 @@
 package com.hucet.mail.content;
 
 import com.hucet.mail.properties.MailConfProperties;
-import com.hucet.mail.stream.dto.MailDto;
 import com.hucet.mail.type.EmailType;
+import com.hucet.shared.MailDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 
 /**
  * Created by taesu on 2017-01-26.
@@ -36,6 +39,7 @@ public class MailContentConstructor {
 
         message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
         message.setFrom(mailConfProperties.getEmail());
+        // TODO Subject
         message.setSubject("test");
         message.setTo(dto.getUserEmail());
         final String htmlContent = createHtmlContentForEmailCertification(EmailType.EMAIL_CERT, dto);
@@ -48,11 +52,22 @@ public class MailContentConstructor {
     private String createHtmlContentForEmailCertification(EmailType emailCert, MailDto dto) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
+        String expiryDate = format.format(dto.getExpiryDate());
         // Create the HTML body using Thymeleaf
         final Context ctx = new Context();
         ctx.setVariable("userName", dto.getUserName());
+        ctx.setVariable("expiryDate", expiryDate);
+        ctx.setVariable("confirmUrl", getConfirmMailUrl(dto));
+//        ctx.setVariable("redirectUrl", );
 //        ctx.setVariable("link", dto.getLink());
 //        ctx.setVariable("expiredDate", format.format(dto.getExpiredDate()));
         return this.templateEngine.process(emailCert.getTemplateName(), ctx);
+    }
+
+    private String getConfirmMailUrl(MailDto dto) {
+        LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+        params.put("token", Collections.singletonList(dto.getToken()));
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(dto.getConfirmUrl());
+        return builder.queryParams(params).build().toUriString();
     }
 }

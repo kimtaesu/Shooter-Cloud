@@ -41,5 +41,4 @@ public class ThymeleafConfig {
         templateResolver.setOrder(1);
         return templateResolver;
     }
-
 }

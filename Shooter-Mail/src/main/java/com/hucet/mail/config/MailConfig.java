@@ -21,10 +21,10 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Configuration
 @ToString
 public class MailConfig {
-    private static final String MAIL_SMTP_AUTH = "mail.smtp.auth";
-    private static final String MAIL_SMTP_STARTTLS = "mail.smtp.starttls.enable";
-    private static final String MAIL_DEBUG = "mail.debug";
-    private static final String MAIL_SMTP_SSL_SOCKET_FACTORY = "mail.smtp.ssl.socketFactory";
+    private static final String KEY_MAIL_SMTP_AUTH = "mail.smtp.auth";
+    private static final String KEY_MAIL_SMTP_STARTTLS = "mail.smtp.starttls.enable";
+    private static final String KEY_MAIL_DEBUG = "mail.debug";
+    private static final String KEY_MAIL_SMTP_SSL_SOCKET_FACTORY = "mail.smtp.ssl.socketFactory";
 
     @Autowired
     MailConfProperties mailConfProperties;
@@ -45,13 +45,13 @@ public class MailConfig {
     @Bean
     Properties getMailProperties() throws GeneralSecurityException {
         final Properties properties = new Properties();
-        properties.put(MAIL_SMTP_AUTH, mailConfProperties.getSmtp().getAuth());
-        properties.put(MAIL_SMTP_STARTTLS, mailConfProperties.getSmtp().getStartTlsEnable());
-        properties.put(MAIL_DEBUG, mailConfProperties.getDebug());
+        properties.put(KEY_MAIL_SMTP_AUTH, mailConfProperties.getSmtp().getAuth());
+        properties.put(KEY_MAIL_SMTP_STARTTLS, mailConfProperties.getSmtp().getStartTlsEnable());
+        properties.put(KEY_MAIL_DEBUG, mailConfProperties.getDebug());
 
         MailSSLSocketFactory sf = new MailSSLSocketFactory();
         sf.setTrustAllHosts(true);
-        properties.put(MAIL_SMTP_SSL_SOCKET_FACTORY, sf);
+        properties.put(KEY_MAIL_SMTP_SSL_SOCKET_FACTORY, sf);
         return properties;
     }
 

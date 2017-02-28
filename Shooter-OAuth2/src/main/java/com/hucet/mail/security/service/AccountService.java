@@ -8,8 +8,6 @@ import com.hucet.mail.security.exception.AlreadyRegisteredException;
 import com.hucet.mail.security.exception.NotFountRoleItem;
 import com.hucet.mail.security.repository.AccountRepository;
 import com.hucet.mail.security.repository.RoleRepository;
-import com.hucet.mail.security.stream.NotifyMailService;
-import com.hucet.mail.security.stream.dto.MailDto;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

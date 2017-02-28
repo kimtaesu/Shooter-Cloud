@@ -1,10 +1,11 @@
 package com.hucet.mail.security.event.listener;
 
 import com.hucet.mail.security.domain.Account;
+import com.hucet.mail.security.domain.VerificationToken;
 import com.hucet.mail.security.event.OnAccountRegistered;
 import com.hucet.mail.security.service.VerificationTokenService;
 import com.hucet.mail.security.stream.NotifyMailService;
-import com.hucet.mail.security.stream.dto.MailDto;
+import com.hucet.shared.MailDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -25,10 +26,14 @@ public class AccountRegistrationListener implements ApplicationListener<OnAccoun
     @Override
     public void onApplicationEvent(OnAccountRegistered event) {
         Account account = event.getAccount();
-        verificationTokenService.createVerificationToken(account, UUID.randomUUID().toString());
+        VerificationToken verificationToken = verificationTokenService.createVerificationToken(account, UUID.randomUUID().toString());
 
-        log.info("The account registered event received %s", account.getUsername());
         // notify the mail queue,
-        notifyMailService.notifyCertMail(new MailDto(account.getUsername(), account.getUserEmail()));
+        notifyMailService.notifyCertMail(new MailDto(account.getUsername(),
+                account.getUserEmail(),
+                verificationToken.getToken(),
+                verificationToken.getExpiryDate().getTime(),
+                // TODO Hypermedia url
+                "http://localhost:9999/uaa/cert/confirm"));
     }
 }

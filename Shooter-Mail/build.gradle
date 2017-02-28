@@ -8,4 +8,6 @@ dependencies {
     compile('org.springframework:spring-context-support')
 
     compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
+
+    compile project(':Shooter-Shared')
 }
