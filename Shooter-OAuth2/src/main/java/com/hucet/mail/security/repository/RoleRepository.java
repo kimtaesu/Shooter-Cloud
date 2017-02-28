@@ -12,5 +12,5 @@ import java.util.Optional;
 public interface RoleRepository extends Repository<Role, Long> {
     Optional<Role> findByRoleType(RoleType roleType);
 
-    Role save(RoleType roleType);
+    Role save(Role role);
 }

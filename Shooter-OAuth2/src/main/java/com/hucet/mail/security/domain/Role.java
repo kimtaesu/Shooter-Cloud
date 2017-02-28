@@ -2,6 +2,7 @@ package com.hucet.mail.security.domain;
 
 import com.hucet.mail.security.enums.RoleType;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Table(name = "ofRole")
+@NoArgsConstructor
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue
@@ -20,6 +22,9 @@ public class Role implements GrantedAuthority {
     @Column(nullable = false)
     private RoleType roleType;
 
+    public Role(RoleType roleUser) {
+        this.roleType = roleUser;
+    }
 
     @Override
     public String getAuthority() {

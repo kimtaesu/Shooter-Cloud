@@ -13,4 +13,6 @@ public interface AccountRepository extends Repository<Account, Long> {
     Account save(Account account);
 
     Optional<Account> findByUserName(String userName);
+
+    Optional<Account> findByUserEmail(String userEmail);
 }

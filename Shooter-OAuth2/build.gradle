@@ -5,7 +5,7 @@ dependencies {
     compile('org.springframework.security:spring-security-jwt')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     runtime('mysql:mysql-connector-java')
-    runtime('org.flywaydb:flyway-core')
+//    runtime('org.flywaydb:flyway-core')
     compile('org.modelmapper:modelmapper:0.7.7')
 
     compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')

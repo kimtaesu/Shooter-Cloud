@@ -4,6 +4,8 @@ import com.hucet.mail.security.domain.Account;
 import com.hucet.mail.security.domain.Role;
 import com.hucet.mail.security.dto.AccountDto;
 import com.hucet.mail.security.enums.RoleType;
+import com.hucet.mail.security.exception.AlreadyRegisteredException;
+import com.hucet.mail.security.exception.NotFountRoleItem;
 import com.hucet.mail.security.repository.AccountRepository;
 import com.hucet.mail.security.repository.RoleRepository;
 import com.hucet.mail.security.stream.NotifyMailService;
@@ -33,7 +35,9 @@ public class AccountService {
     ModelMapper modelMapper;
 
     public Long newAccount(AccountDto dto) {
-        // TODO Exist User
+        if (accountRepository.findByUserEmail(dto.getUserEmail()).isPresent()) {
+            throw new AlreadyRegisteredException("이미 등록된 사용자입니다.");
+        }
         Account account = modelMapper.map(dto, Account.class);
         account.addRole(getDefaultRole());
         account = accountRepository.save(account);
@@ -58,6 +62,6 @@ public class AccountService {
         if (defualtRole.isPresent()) {
             return defualtRole.get();
         }
-        return roleRepository.save(RoleType.ROLE_USER);
+        throw new NotFountRoleItem("Default Role이 존재하지 않습니다.");
     }
 }

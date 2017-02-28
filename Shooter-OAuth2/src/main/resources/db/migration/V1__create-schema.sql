@@ -22,8 +22,6 @@ CREATE TABLE user_role (
 
 alter table account
 add constraint UK_mgx7cx34ipxrv397buqohsl07 unique (user_email);
-alter table account
-add constraint UK_f6xpj7h12wr185bqhfi1hqlbr unique (user_name);
 alter table user_role
 add constraint FKqcmhw2kdl3nxfdjarpemj6wcu foreign key (role_id) references of_role (role_id);
 alter table user_role
