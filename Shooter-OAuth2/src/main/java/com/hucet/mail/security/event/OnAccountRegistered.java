@@ -6,12 +6,10 @@ import org.springframework.context.ApplicationEvent;
 
 @Data
 public class OnAccountRegistered extends ApplicationEvent {
-    private String appUrl;
     private Account account;
 
-    public OnAccountRegistered(Object source, Account account, String appUrl) {
+    public OnAccountRegistered(Object source, Account account) {
         super(source);
-        this.appUrl = appUrl;
         this.account = account;
     }
 }

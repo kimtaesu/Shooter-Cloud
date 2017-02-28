@@ -19,6 +19,7 @@ public class GlobalExceptionHandler {
         } else if (e instanceof NotFountRoleItem) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
         }
+        // TODO Catch NotRegisteredException, EmailExpiredTokenException
         return new ResponseEntity<>(e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
     }
 }

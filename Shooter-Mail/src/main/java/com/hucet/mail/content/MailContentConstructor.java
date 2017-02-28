@@ -39,7 +39,6 @@ public class MailContentConstructor {
 
         message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
         message.setFrom(mailConfProperties.getEmail());
-        // TODO Subject
         message.setSubject("본인 인증 메일");
         message.setTo(dto.getUserEmail());
         final String htmlContent = createHtmlContentForEmailCertification(EmailType.EMAIL_CERT, dto);

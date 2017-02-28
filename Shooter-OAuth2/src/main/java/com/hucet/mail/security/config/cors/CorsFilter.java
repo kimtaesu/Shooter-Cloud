@@ -1,7 +1,8 @@
 package com.hucet.mail.security.config.cors;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -16,11 +17,9 @@ import java.io.IOException;
 @Slf4j
 public class CorsFilter implements Filter {
 
-    @Value("${origin.host}")
-    String originHost;
-
-    @Value("${origin.port}")
-    int originPort;
+    @Qualifier("frontUrlBean")
+    @Autowired
+    String frontUrl;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -31,7 +30,7 @@ public class CorsFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
-        response.setHeader("Access-Control-Allow-Origin", "http://" + originHost + ":" + originPort);
+        response.setHeader("Access-Control-Allow-Origin", frontUrl);
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setHeader("Access-Control-Allow-Methods",
                     "POST,GET, PUT,DELETE");

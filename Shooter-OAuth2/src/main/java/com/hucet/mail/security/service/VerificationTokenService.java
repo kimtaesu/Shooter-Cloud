@@ -3,6 +3,7 @@ package com.hucet.mail.security.service;
 
 import com.hucet.mail.security.domain.Account;
 import com.hucet.mail.security.domain.VerificationToken;
+import com.hucet.mail.security.exception.NotRegisteredException;
 import com.hucet.mail.security.repository.VerificationTokenRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,6 @@ public class VerificationTokenService {
                 return false;
             }
         }
-        throw new RuntimeException("asda");
+        throw new NotRegisteredException("등록된 사용자가 없습니다.");
     }
 }

@@ -33,7 +33,7 @@ public class UserController {
             throw new ValidationException(result.toString());
         }
         Account account = accountService.newAccount(dto);
-        eventPublisher.publishEvent(new OnAccountRegistered(this, account, "test"));
+        eventPublisher.publishEvent(new OnAccountRegistered(this, account));
         return account.getId();
     }
 }
