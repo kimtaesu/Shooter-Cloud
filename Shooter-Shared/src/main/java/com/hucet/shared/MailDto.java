@@ -9,6 +9,9 @@ public class MailDto implements Serializable {
     private String confirmUrl;
     private String token;
 
+    public MailDto() {
+    }
+
     public MailDto(String userName, String userEmail, String token, Long expiryDate, String confirmUrl) {
         this.userName = userName;
         this.userEmail = userEmail;
@@ -37,4 +40,23 @@ public class MailDto implements Serializable {
         return token;
     }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public void setExpiryDate(Long expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public void setConfirmUrl(String confirmUrl) {
+        this.confirmUrl = confirmUrl;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }
