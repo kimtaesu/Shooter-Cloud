@@ -32,7 +32,7 @@ public class MailController {
     @GetMapping(value = "/confirm")
     ModelAndView certMail(@RequestParam("token") String token, ModelMap model) {
         if (verificationTokenService.isValid(token)) {
-            return new ModelAndView("redirect:" + frontUrl + "/login");
+            return new ModelAndView("redirect:" + frontUrl + "/home");
         } else {
             // TODO Catch
             throw new EmailExpiredTokenException("인증 기간이 만료되었습니다.");

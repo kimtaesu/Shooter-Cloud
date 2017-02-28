@@ -2,7 +2,7 @@ package com.hucet.mail.security.service;
 
 import com.hucet.mail.security.domain.Account;
 import com.hucet.mail.security.domain.Role;
-import com.hucet.mail.security.dto.AccountDto;
+import com.hucet.mail.security.dto.UserDto;
 import com.hucet.mail.security.enums.RoleType;
 import com.hucet.mail.security.exception.AlreadyRegisteredException;
 import com.hucet.mail.security.exception.NotFountRoleItem;
@@ -30,7 +30,7 @@ public class AccountService {
     @Autowired
     ModelMapper modelMapper;
 
-    public Account newAccount(AccountDto dto) {
+    public Account newAccount(UserDto.JoinDto dto) {
         if (accountRepository.findByUserEmail(dto.getUserEmail()).isPresent()) {
             throw new AlreadyRegisteredException("이미 등록된 사용자입니다.");
         }

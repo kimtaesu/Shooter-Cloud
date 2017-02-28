@@ -2,7 +2,7 @@ package com.hucet.mail.security.controller;
 
 
 import com.hucet.mail.security.domain.Account;
-import com.hucet.mail.security.dto.AccountDto;
+import com.hucet.mail.security.dto.UserDto;
 import com.hucet.mail.security.event.OnAccountRegistered;
 import com.hucet.mail.security.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +28,22 @@ public class UserController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
-    Long signup(@RequestBody @Valid AccountDto dto, BindingResult result) {
+    Long signup(@RequestBody @Valid UserDto.JoinDto dto, BindingResult result) {
         if (result.hasErrors()) {
             throw new ValidationException(result.toString());
         }
+
         Account account = accountService.newAccount(dto);
         eventPublisher.publishEvent(new OnAccountRegistered(this, account));
         return account.getId();
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseStatus(code = HttpStatus.OK)
+    void login(@RequestBody @Valid UserDto.LoginDto dto, BindingResult result) {
+        if (result.hasErrors()) {
+            throw new ValidationException(result.toString());
+        }
     }
 }
