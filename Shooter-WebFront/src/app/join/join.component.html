@@ -3,7 +3,7 @@
     <input md-input
            formControlName="email"
            type="email"
-           [ngModel]="user.email"
+           [(ngModel)]="user.userEmail"
            placeholder="Email"
            required>
     <md-hint>
@@ -18,7 +18,7 @@
     <input md-input
            formControlName="userName"
            type="text"
-           [ngModel]="user.userName"
+           [(ngModel)]="user.userName"
            placeholder="User Name"
            required>
     <md-hint>
@@ -33,7 +33,7 @@
     <input md-input
            formControlName="password"
            type="password"
-           [ngModel]="user.password"
+           [(ngModel)]="user.password"
            placeholder="Password"
            required>
     <md-hint>
@@ -44,7 +44,9 @@
     </md-hint>
   </md-input-container>
   <br>
-
+  <div>
+    <button md-raised-button [disabled]="!Form.valid" (click)="onSave()">저장</button>
+  </div>
 </form>
 
 

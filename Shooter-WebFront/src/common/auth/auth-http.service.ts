@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {Injectable} from "@angular/core";
 import {AuthResponse} from "./auth-response";
-import {ServerAPI} from "../server_api";
 
 export interface AuthConfig {
   client_id: string,
@@ -75,7 +74,7 @@ export class AuthService {
     param.toString()
     let body = param.toString()
     return this.http
-      .post(ServerAPI.token,
+      .post(environment.api.token,
         body,
         accessTokenOption
       )

@@ -3,10 +3,17 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
+let baseUrl: string = 'http://localhost:9999'
 export const environment = {
   production: false,
 
-  baseUrl: 'http://localhost:8180',
+
+  api: {
+    token: baseUrl + '/oauth/token',
+    refresh: baseUrl + '/oauth/token',
+    login: baseUrl + '/test',
+    join: baseUrl + '/uaa/user/signup',
+  },
 
   authCofig: {
     clientId: 'aaa',

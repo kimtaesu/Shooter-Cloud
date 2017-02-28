@@ -1,6 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {FormGroup, Validators, FormControl} from "@angular/forms";
 import {ValidationService} from "../shared/validator/validator";
+import {Http, RequestOptionsArgs} from "@angular/http";
+import {environment} from "../../environments/environment";
+import {getJsonUtf8Header} from "../../common/header-support";
 
 @Component({
   selector: 'app-join',
@@ -11,9 +14,13 @@ export class JoinComponent implements OnInit {
 
   Form: FormGroup;
   user = {
-    email: '',
+    userEmail: '',
     userName: '',
     password: '',
+  }
+
+  constructor(private http: Http) {
+
   }
 
   ngOnInit(): void {
@@ -30,5 +37,18 @@ export class JoinComponent implements OnInit {
         Validators.maxLength(20),
       ])),
     });
+  }
+
+  onSave() {
+    let requests: RequestOptionsArgs = {
+      headers: getJsonUtf8Header()
+    }
+    console.log(requests.headers)
+    this.http.post(environment.api.join, JSON.stringify(this.user), requests)
+      .subscribe((res) => {
+        console.info(res)
+      }, (error) => {
+        console.info(error)
+      });
   }
 }

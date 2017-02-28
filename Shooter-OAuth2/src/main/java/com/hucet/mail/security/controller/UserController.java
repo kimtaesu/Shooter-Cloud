@@ -1,8 +1,8 @@
 package com.hucet.mail.security.controller;
 
 
-import com.hucet.mail.security.service.AccountService;
 import com.hucet.mail.security.dto.AccountDto;
+import com.hucet.mail.security.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +14,7 @@ import javax.validation.ValidationException;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
