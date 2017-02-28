@@ -1,6 +1,6 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HomeComponent} from "./home.component";
 import {LoginComponent} from "../login/login.component";
 import {MaterialModule} from "@angular/material";
@@ -16,6 +16,7 @@ import {JoinComponent} from "../join/join.component";
     HomeRoutingModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterialModule.forRoot(),
   ],
   providers: [

@@ -1,12 +1,50 @@
-<md-input-container class="container">
-  <input md-input placeholder="User Email">
-</md-input-container>
-<md-input-container class="container">
-  <input md-input placeholder="Password">
-</md-input-container>
-<md-input-container class="container">
-  <input md-input placeholder="Password confirm">
-</md-input-container>
-<div>
-  <button md-raised-button>Save</button>
-</div>
+<form [formGroup]="Form">
+  <md-input-container>
+    <input md-input
+           formControlName="email"
+           type="email"
+           [ngModel]="user.email"
+           placeholder="Email"
+           required>
+    <md-hint>
+      <div [hidden]="!Form.controls.email.touched">
+        <span *ngIf="!Form.controls.email.valid">이메일 형식이 올바르지 않습니다.</span>
+      </div>
+    </md-hint>
+  </md-input-container>
+  <br>
+
+  <md-input-container>
+    <input md-input
+           formControlName="userName"
+           type="text"
+           [ngModel]="user.userName"
+           placeholder="User Name"
+           required>
+    <md-hint>
+      <div [hidden]="!Form.controls.userName.touched">
+        <span *ngIf="(Form.controls.userName.hasError('minlength') || Form.controls.userName.hasError('maxlength'))">6~20 자릿 수</span>
+      </div>
+    </md-hint>
+  </md-input-container>
+  <br>
+
+  <md-input-container>
+    <input md-input
+           formControlName="password"
+           type="password"
+           [ngModel]="user.password"
+           placeholder="Password"
+           required>
+    <md-hint>
+      <div [hidden]="!Form.controls.password.touched">
+        <span *ngIf="(Form.controls.password.hasError('minlength') || Form.controls.password.hasError('maxlength'))">6~20 자릿 수</span>
+        <span *ngIf="Form.controls.password.hasError('invalidPassword')">적어도 숫자 1개가 포함</span>
+      </div>
+    </md-hint>
+  </md-input-container>
+  <br>
+
+</form>
+
+
