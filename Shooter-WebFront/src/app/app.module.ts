@@ -2,7 +2,6 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app-routing.module";
-import {HomeComponent} from "./home/home.component";
 import {MaterialModule} from "@angular/material";
 import "hammerjs";
 import {HomeModule} from "./home/home.module";
@@ -14,7 +13,7 @@ import {HomeModule} from "./home/home.module";
     AppRoutingModule,
     BrowserModule,
     HomeModule,
-
+    MaterialModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

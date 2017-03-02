@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-import {navItems} from "../component/nav/items";
 
 @Component({
   selector: 'app-home',
@@ -7,15 +6,5 @@ import {navItems} from "../component/nav/items";
   styleUrls: ['./home.component.css'],
 
 })
-export class HomeComponent implements OnInit {
-  ngOnInit(): void {
-
-  }
-
-  constructor() {
-  }
-
-  navigateToHome() {
-
-  }
+export class HomeComponent {
 }
