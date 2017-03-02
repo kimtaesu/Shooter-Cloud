@@ -6,13 +6,13 @@ import {LoginComponent} from "../login/login.component";
 import {MaterialModule} from "@angular/material";
 import {HomeRoutingModule, homepRoutingProviders} from "./home-routing.module";
 import {JoinComponent} from "../join/join.component";
-import {NavItemParentComponent} from "../component/nav/parent/nav-item-parent.component";
+import {DashBoardComponent} from "../admin/dashboard/dashboard.component";
 @NgModule({
   declarations: [
     HomeComponent,
     LoginComponent,
     JoinComponent,
-    NavItemParentComponent
+    DashBoardComponent,
   ],
   imports: [
     HomeRoutingModule,

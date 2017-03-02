@@ -1,9 +1,0 @@
-<md-nav-list>
-  <md-list-item class="d-block" *ngFor="let item of items;">
-    <i class="material-icons">{{item.icon}}</i>
-    <span>{{item.title}}</span>
-    <i [hidden]='item.child?.length < 1' class="material-icons">arrow_drop_down</i>
-  </md-list-item>
-  <router-outlet></router-outlet>
-</md-nav-list>
-

@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {LoginComponent} from "../login/login.component";
 import {RouterModule} from "@angular/router";
 import {JoinComponent} from "../join/join.component";
+import {DashBoardComponent} from "../admin/dashboard/dashboard.component";
 
 @NgModule({
   imports: [
@@ -13,6 +14,10 @@ import {JoinComponent} from "../join/join.component";
       {
         path: 'join',
         component: JoinComponent
+      },
+      {
+        path: 'dashboard',
+        component: DashBoardComponent
       }
     ]),
   ],
