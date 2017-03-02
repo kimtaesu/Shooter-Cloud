@@ -2,7 +2,7 @@
 server:
   port: 9999
   # Use different context-path to avoid session cookie overlapping
-  context-path: /uaa
+#  context-path: /uaa
 
 spring.profiles.active: mysql
 spring:

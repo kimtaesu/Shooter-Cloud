@@ -1,4 +1,4 @@
-package com.hucet.mail.security.provider;
+package com.hucet.mail.security.utils;
 
 import java.util.Calendar;
 import java.util.Date;

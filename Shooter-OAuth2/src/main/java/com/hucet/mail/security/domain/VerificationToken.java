@@ -1,6 +1,6 @@
 package com.hucet.mail.security.domain;
 
-import com.hucet.mail.security.provider.Utils;
+import com.hucet.mail.security.utils.Utils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

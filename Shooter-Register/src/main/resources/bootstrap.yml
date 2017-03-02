@@ -3,7 +3,9 @@ spring:
     config:
       uri: http://localhost:8888
       failFast: false
-
+origin:
+  host: localhost
+  port: 4200
 eureka:
   instance:
     hostname: localhost

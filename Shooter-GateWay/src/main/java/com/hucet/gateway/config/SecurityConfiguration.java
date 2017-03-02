@@ -23,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // TODO CSRF
         http
                 .authorizeRequests()
-                .antMatchers("/api/v1/uaa/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/api/v1/user/signup").permitAll()
                 .anyRequest().authenticated()
                 .and()

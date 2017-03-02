@@ -31,6 +31,7 @@ subprojects {
         compile('org.projectlombok:lombok:1.16.6')
         // https://mvnrepository.com/artifact/com.google.guava/guava
         compile group: 'com.google.guava', name: 'guava', version: '21.0'
+        compile('org.springframework.boot:spring-boot-starter-actuator')
     }
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
