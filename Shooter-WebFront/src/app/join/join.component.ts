@@ -40,15 +40,15 @@ export class JoinComponent implements OnInit {
   }
 
   onSave() {
-    let requests: RequestOptionsArgs = {
-      headers: getJsonUtf8Header()
-    }
-    console.log(requests.headers)
-    this.http.post(environment.api.join, JSON.stringify(this.user), requests)
-      .subscribe((res) => {
-        console.info(res)
-      }, (error) => {
-        console.info(error)
-      });
+    // let requests: RequestOptionsArgs = {
+    //   headers: getJsonUtf8Header()
+    // }
+    // console.log(requests.headers)
+    // this.http.post(environment.api.join, JSON.stringify(this.user), requests)
+    //   .subscribe((res) => {
+    //     console.info(res)
+    //   }, (error) => {
+    //     console.info(error)
+    //   });
   }
 }

@@ -7,4 +7,5 @@ import "rxjs/add/operator/toPromise";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
 }

@@ -3,6 +3,7 @@ import {LoginComponent} from "../login/login.component";
 import {RouterModule} from "@angular/router";
 import {JoinComponent} from "../join/join.component";
 import {DashBoardComponent} from "../admin/dashboard/dashboard.component";
+import {HomeComponent} from "./home.component";
 
 @NgModule({
   imports: [
@@ -16,8 +17,12 @@ import {DashBoardComponent} from "../admin/dashboard/dashboard.component";
         component: JoinComponent
       },
       {
-        path: 'dashboard',
-        component: DashBoardComponent
+        path: 'home',
+        component: HomeComponent,
+        children: [{
+          path: 'dashboard',
+          component: DashBoardComponent
+        }],
       }
     ]),
   ],
