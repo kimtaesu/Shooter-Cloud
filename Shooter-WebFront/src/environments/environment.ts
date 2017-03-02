@@ -16,7 +16,7 @@ export const environment = {
   },
 
   authCofig: {
-    clientId: 'aaa',
-    clientSecret: 'aaa',
+    clientId: 'items',
+    clientSecret: 'items',
   }
 }

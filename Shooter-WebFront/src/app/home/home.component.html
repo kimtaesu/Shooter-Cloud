@@ -1,17 +1,22 @@
 <md-toolbar color="primary">
   <button md-icon-button (click)="sidenav.toggle()">
-    <i class="material-icons demo-toolbar-icon">menu</i>
+    <i class="material-icons">menu</i>
   </button>
-  <span> My Heros Application</span>
-  <a routerLink="/login">Sign in</a>
-  <span>or</span>
-  <a routerLink="/join">Sign up</a>
+  <span>Admin</span>
+  <div class="col d-flex align-items-end flex-column">
+    <i class="material-icons" (click)="navigateToHome()">person</i>
+  </div>
 </md-toolbar>
 
-<md-sidenav-container class="hundred">
 
-  <md-sidenav #sidenav class="example-sidenav">
-    Jolly good!
+<md-sidenav-container class="h-100">
+  <!-- Side nav-->
+  <md-sidenav #sidenav mode="side">
+    <nav-item-parent></nav-item-parent>
   </md-sidenav>
-</md-sidenav-container>
 
+  <!-- Contents -->
+  <div>
+    <span>asdad</span>
+  </div>
+</md-sidenav-container>

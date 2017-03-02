@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {logger} from "codelyzer/util/logger";
+import {navItems} from "../component/nav/items";
 
 @Component({
   selector: 'app-home',
@@ -9,17 +9,13 @@ import {logger} from "codelyzer/util/logger";
 })
 export class HomeComponent implements OnInit {
   ngOnInit(): void {
+
   }
 
   constructor() {
-    var a = 10;
   }
 
   navigateToHome() {
-    logger.info("navigateToHome");
-  }
 
-  navigateToHeros() {
-    logger.info("navigateToHeros");
   }
 }
