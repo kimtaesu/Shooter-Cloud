@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {TypeSummary} from "./summary/summary-provider";
 @Component({
   selector: 'dashboard',
@@ -6,10 +6,4 @@ import {TypeSummary} from "./summary/summary-provider";
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashBoardComponent {
-
-  ngAfterViewInit() {
-    console.log(this.type)
-  }
-  @Input('type') type: TypeSummary
-
 }

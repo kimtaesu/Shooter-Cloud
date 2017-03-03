@@ -4,6 +4,7 @@ import {Component, OnInit, style} from "@angular/core";
   template: `
                 <p>Eureka</p>
             `,
+
 })
 export class EurekaSummaryComponent implements OnInit {
 
