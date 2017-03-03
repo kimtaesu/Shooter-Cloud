@@ -1,17 +1,15 @@
-import {Component, OnInit, style} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
+import {Response} from "@angular/http";
 @Component({
   selector: 'eureka-summary',
   template: `
-                <p>Eureka</p>
+                
             `,
 
 })
 export class EurekaSummaryComponent implements OnInit {
+  @Input('response') response: Response
 
   ngOnInit(): void {
-  }
-
-
-  constructor() {
   }
 }

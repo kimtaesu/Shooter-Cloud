@@ -4,6 +4,7 @@ import {Http} from "@angular/http";
 import {ProgressSummaryComponent} from "./dynamic/progress-summary.component";
 import {ErrorSummaryComponent} from "./dynamic/error-summary.component";
 import {MaterialModule} from "@angular/material";
+import {EurekaSummaryComponent} from "./dynamic/eureka-summary.component";
 
 enum TypeSummary {
   EUREKA = 0,
@@ -17,6 +18,12 @@ const DYNAMIC_COMPONENTS = {
   error: {
     component: ErrorSummaryComponent,
   },
+  context: {
+    response: null
+  },
+  eureka: {
+    component: EurekaSummaryComponent,
+  },
 }
 @Component({
   selector: 'summary-content',
@@ -26,6 +33,7 @@ const DYNAMIC_COMPONENTS = {
                 <DynamicComponent 
                 [componentType]="currentDynamicComponent.component"
                 [componentModules]="currentDynamicComponent.extraModule"
+                [componentContext]="currentDynamicComponent.context"
                 ></DynamicComponent>
             </div>
         </md-card>
@@ -38,7 +46,8 @@ export class SummaryContentComponent implements OnInit {
   private httpClient: RequestClient;
   private currentDynamicComponent = {
     component: DYNAMIC_COMPONENTS.progress.component,
-    extraModule: DYNAMIC_COMPONENTS.extraModule
+    extraModule: DYNAMIC_COMPONENTS.extraModule,
+    context: null
   }
 
   constructor(private http: Http) {
@@ -55,12 +64,11 @@ export class SummaryContentComponent implements OnInit {
 
     this.httpClient.httpRequest(this.http)
       .subscribe((res) => {
-        console.log("next")
-        console.log(res)
+        this.currentDynamicComponent.component = DYNAMIC_COMPONENTS.eureka.component
+        this.currentDynamicComponent.context = {response: res}
       }, (error) => {
         this.currentDynamicComponent.component = DYNAMIC_COMPONENTS.error.component
-        console.log("error")
-        console.log(error)
+      }, () => {
       })
   }
 }
