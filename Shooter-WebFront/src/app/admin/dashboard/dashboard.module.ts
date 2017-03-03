@@ -1,18 +1,18 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {DashBoardComponent} from "./dashboard.component";
-import {SummaryRequestDirective} from "./summary/summary-request.directive";
 import {EurekaSummaryComponent} from "./summary/eureka/eureka-summary.component";
 import {MaterialModule} from "@angular/material";
+import {SummaryContentComponent} from "./summary/summary-content.component";
 @NgModule({
   declarations: [
     DashBoardComponent,
-    SummaryRequestDirective,
     EurekaSummaryComponent,
+    SummaryContentComponent,
   ],
   imports: [
     BrowserModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [DashBoardComponent]
