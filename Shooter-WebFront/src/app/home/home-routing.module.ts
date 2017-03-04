@@ -4,6 +4,7 @@ import {RouterModule} from "@angular/router";
 import {JoinComponent} from "../join/join.component";
 import {DashBoardComponent} from "../admin/dashboard/dashboard.component";
 import {HomeComponent} from "./home.component";
+import {EurekaDetailComponent} from "../admin/dashboard/summary/eureka/detail/eureka-detail.component";
 
 @NgModule({
   imports: [
@@ -19,10 +20,16 @@ import {HomeComponent} from "./home.component";
       {
         path: 'home',
         component: HomeComponent,
-        children: [{
-          path: 'dashboard',
-          component: DashBoardComponent
-        }],
+        children: [
+          {
+            path: 'dashboard',
+            component: DashBoardComponent
+          },
+          {
+            path: 'eureka',
+            component: EurekaDetailComponent
+          }
+        ],
       }
     ]),
   ],
