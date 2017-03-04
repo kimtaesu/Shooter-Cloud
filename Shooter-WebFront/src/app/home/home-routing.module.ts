@@ -27,7 +27,7 @@ import {EurekaDetailComponent} from "../admin/dashboard/summary/eureka/detail/eu
           },
           {
             path: 'eureka',
-            component: EurekaDetailComponent
+            component: EurekaDetailComponent,
           }
         ],
       }

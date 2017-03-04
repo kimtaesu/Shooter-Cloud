@@ -31,6 +31,7 @@ interface eurekaStatusInfo {
 
 export class EurekaSummaryComponent implements OnInit {
   private httpClient = EurekaApi;
+  private response: EurekaResponse;
   var
   viewStatus = {
     isLoading: true,
@@ -79,10 +80,9 @@ export class EurekaSummaryComponent implements OnInit {
   private update() {
     this.httpClient.httpRequest(this.http)
       .subscribe((res) => {
-        console.info("subscribe")
-        this.calculateStatusCount(res.json())
+        this.response = res.json();
+        this.statusInfo = this.calculateStatusCount(res.json())
       }, (error) => {
-        console.info("error")
         this.viewStatus.isLoading = false;
       }, () => {
         this.viewStatus.isLoading = false;

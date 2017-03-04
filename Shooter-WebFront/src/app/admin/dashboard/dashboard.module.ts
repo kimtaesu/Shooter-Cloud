@@ -8,6 +8,7 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {EurekaSummaryComponent} from "./summary/eureka/eureka-summary.component";
 import {ProgressSummaryComponent} from "./summary/common/progress-summary.component";
 import {ErrorSummaryComponent} from "./summary/common/error-summary.component";
+import {NgPipesModule} from "ngx-pipes";
 @NgModule({
   declarations: [
     DashBoardComponent,
@@ -19,6 +20,7 @@ import {ErrorSummaryComponent} from "./summary/common/error-summary.component";
     BrowserModule,
     MaterialModule,
     NgxDatatableModule,
+    NgPipesModule,
     DynamicComponentModule,
   ],
   providers: [],
