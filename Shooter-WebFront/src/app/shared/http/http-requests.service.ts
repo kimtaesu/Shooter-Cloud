@@ -8,7 +8,7 @@ export interface RequestClient {
 let appendResponseOkThrowing = (res: Observable<Response>) => {
   return res
     .map((res: Response) => {
-      if (res.ok) {
+      if (!res.ok) {
         throw new Error('The response not ok ' +
           'code : ' + res.status)
       }

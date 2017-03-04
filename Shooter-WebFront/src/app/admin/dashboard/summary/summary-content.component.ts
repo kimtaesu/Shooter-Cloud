@@ -1,17 +1,19 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {EurekaApi, RequestClient} from "../../../shared/http/http-requests.service";
-import {Http} from "@angular/http";
+import {Http, Response} from "@angular/http";
 import {ProgressSummaryComponent} from "./dynamic/progress-summary.component";
 import {ErrorSummaryComponent} from "./dynamic/error-summary.component";
-import {MaterialModule} from "@angular/material";
-import {EurekaSummaryComponent} from "./dynamic/eureka-summary.component";
+import {EurekaSummaryComponent} from "./dynamic/eureka/eureka-summary.component";
+import {DynamicModule} from "./dynamic/dynamic.module";
+import {GroupByPipe} from "ngx-pipes/src/app/pipes/array";
 
 enum TypeSummary {
   EUREKA = 0,
 }
 
-const DYNAMIC_COMPONENTS = {
-  extraModule: MaterialModule,
+let DYNAMIC_COMPONENTS = {
+  extraModule: DynamicModule,
+
   progress: {
     component: ProgressSummaryComponent,
   },
@@ -31,9 +33,9 @@ const DYNAMIC_COMPONENTS = {
         <md-card>
             <div>
                 <DynamicComponent 
-                [componentType]="currentDynamicComponent.component"
-                [componentModules]="currentDynamicComponent.extraModule"
-                [componentContext]="currentDynamicComponent.context"
+                [componentType]="currentDynamicDirector.component"
+                [componentContext]="currentDynamicDirector.context"
+                [componentModules]="currentDynamicDirector.extraModule"
                 ></DynamicComponent>
             </div>
         </md-card>
@@ -44,7 +46,7 @@ export class SummaryContentComponent implements OnInit {
 
   @Input('type') private type: string;
   private httpClient: RequestClient;
-  private currentDynamicComponent = {
+  private currentDynamicDirector = {
     component: DYNAMIC_COMPONENTS.progress.component,
     extraModule: DYNAMIC_COMPONENTS.extraModule,
     context: null
@@ -61,13 +63,12 @@ export class SummaryContentComponent implements OnInit {
       default:
         throw new Error('Parameter 형식이 잘못되었습니다. TypeSummary 를 참조하세요!')
     }
-
     this.httpClient.httpRequest(this.http)
       .subscribe((res) => {
-        this.currentDynamicComponent.component = DYNAMIC_COMPONENTS.eureka.component
-        this.currentDynamicComponent.context = {response: res}
+        this.currentDynamicDirector.component = DYNAMIC_COMPONENTS.eureka.component
+        this.currentDynamicDirector.context = {response: res}
       }, (error) => {
-        this.currentDynamicComponent.component = DYNAMIC_COMPONENTS.error.component
+        this.currentDynamicDirector.component = DYNAMIC_COMPONENTS.error.component
       }, () => {
       })
   }

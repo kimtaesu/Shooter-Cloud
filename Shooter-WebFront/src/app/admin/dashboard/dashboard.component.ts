@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {TypeSummary} from "./summary/summary-provider";
+import {Component} from "@angular/core";
+import {GroupByPipe} from "ngx-pipes/src/app/pipes/array";
 @Component({
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
