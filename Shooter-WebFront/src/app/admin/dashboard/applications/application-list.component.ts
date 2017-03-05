@@ -4,7 +4,7 @@ import {FlattenPipe} from "ngx-pipes/src/app/pipes/array";
 import "rxjs/add/operator/concatMap";
 import {Router} from "@angular/router";
 import {QueryApps} from "../../../shared/http/http-requests.service";
-import {Application_Instance, Applications} from "./summary/application-response";
+import {Application_Instance, Applications} from "./application-response";
 
 interface row {
   Application: string

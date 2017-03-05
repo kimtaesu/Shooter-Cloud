@@ -3,10 +3,10 @@ import "rxjs/add/operator/concatMap";
 import {ActivatedRoute} from "@angular/router";
 import {Http, Response} from "@angular/http";
 import {QueryInstance} from "../../../../shared/http/http-requests.service";
-import {Application_Instance} from "../summary/application-response";
+import {Application_Instance} from "../application-response";
 
 @Component({
-  template: `<p>detail</p>`,
+  templateUrl: './application-detail.component.html'
 })
 export class ApplicationDetailComponent implements OnInit {
   ngOnInit(): void {
@@ -21,10 +21,15 @@ export class ApplicationDetailComponent implements OnInit {
         return QueryInstance.httpRequest(http, instanceId)
       })
       .map((res: Response) => {
-        return res.json()
+        var response: Application_Instance = res.json().instance
+        response.metricsUrl = response.homePageUrl + 'metrics';
+        console.info(response)
+        return response;
       })
       .subscribe((instance: Application_Instance) => {
         console.info(instance)
+      }, error => {
+        alert(error)
       })
   }
 }

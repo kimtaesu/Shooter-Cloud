@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {QueryApps} from "../../../../shared/http/http-requests.service";
 import {Http} from "@angular/http";
 import {Router} from "@angular/router";
-import {Applications, DISCOVERY_STATUS} from "./application-response";
+import {Applications, DISCOVERY_STATUS} from "../application-response";
 interface applicationStatusInfo {
   up: number,
   down: number,
