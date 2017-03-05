@@ -1,9 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {Http} from "@angular/http";
-import {EurekaResponse} from "../eureka-response";
 import {FlattenPipe} from "ngx-pipes/src/app/pipes/array";
-import {EurekaApi} from "../../../../../shared/http/http-requests.service";
 import "rxjs/add/operator/concatMap";
+import {Router} from "@angular/router";
+import {EurekaApi} from "../../../shared/http/http-requests.service";
+import {Application_Instance, Applications} from "./summary/eureka-response";
 
 interface row {
   Application: string
@@ -11,19 +12,18 @@ interface row {
   status: string
 }
 @Component({
-  templateUrl: './eureka-detail.component.html',
+  templateUrl: 'application-list.component.html',
   providers: [FlattenPipe]
 })
-export class EurekaDetailComponent implements OnInit {
+export class ApplicationListComponent implements OnInit {
   private httpClient = EurekaApi;
   private rows = [];
-  columns = [
-    {prop: 'Application'},
-    {name: 'Info'},
-    {name: 'Status'}
-  ];
 
-  constructor(private http: Http, private flatPipe: FlattenPipe) {
+  constructor(private http: Http, private flatPipe: FlattenPipe, private router: Router) {
+  }
+
+  onClick(value: Application_Instance) {
+    console.info(value)
   }
 
   ngOnInit(): void {
@@ -33,16 +33,18 @@ export class EurekaDetailComponent implements OnInit {
         return res.json()
       })
       // application {} Json 을 커스텀 형태로 변환
-      .map((res: EurekaResponse) => {
+      .map((res: Applications) => {
         var result = res.applications.application
           .map(application => {
             return application.instance
               .map(instance => {
+                instance.metricsUrl = instance.homePageUrl + 'metrics';
                 return {
-                  name: application.name,
+                  name: instance.app,
                   instanceId: instance.instanceId,
                   status: instance.status,
-                  infoUrl: instance.statusPageUrl
+                  infoUrl: instance.statusPageUrl,
+                  detail: instance
                 };
               })
           })
@@ -56,11 +58,12 @@ export class EurekaDetailComponent implements OnInit {
       .subscribe((res) => {
         res
           .map(data => {
-            var {name, instanceId, status, infoUrl} = data
+            var {name, instanceId, status, infoUrl, detail} = data
             let row = {
-              Application: name,
+              application: name,
               info: instanceId,
               status: status,
+              detail: detail
             }
             this.rows.push(row)
           })

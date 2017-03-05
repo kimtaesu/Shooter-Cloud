@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {EurekaApi} from "../../../../shared/http/http-requests.service";
 import {Http} from "@angular/http";
 import {Router} from "@angular/router";
-import {EurekaResponse, EUREKA_STATUS} from "./eureka-response";
+import {Applications, DISCOVERY_STATUS} from "./eureka-response";
 interface eurekaStatusInfo {
   up: number,
   down: number,
@@ -31,7 +31,7 @@ interface eurekaStatusInfo {
 
 export class EurekaSummaryComponent implements OnInit {
   private httpClient = EurekaApi;
-  private response: EurekaResponse;
+  private response: Applications;
   var
   viewStatus = {
     isLoading: true,
@@ -44,10 +44,10 @@ export class EurekaSummaryComponent implements OnInit {
   }
 
   onDetail() {
-    this.router.navigateByUrl('/home/eureka')
+    this.router.navigateByUrl('/home/application')
   }
 
-  calculateStatusCount(body: EurekaResponse) {
+  calculateStatusCount(body: Applications) {
     var eurekaStatusInfo: eurekaStatusInfo = {
       up: 0,
       down: 0,
@@ -57,14 +57,14 @@ export class EurekaSummaryComponent implements OnInit {
       .map(application => {
         return application.instance
           .forEach(instance => {
-            switch (+EUREKA_STATUS[instance.status]) {
-              case EUREKA_STATUS.UP:
+            switch (+DISCOVERY_STATUS[instance.status]) {
+              case DISCOVERY_STATUS.UP:
                 eurekaStatusInfo.up++;
                 break;
-              case EUREKA_STATUS.DOWN:
+              case DISCOVERY_STATUS.DOWN:
                 eurekaStatusInfo.down++;
                 break;
-              case EUREKA_STATUS.UNKNWON:
+              case DISCOVERY_STATUS.UNKNWON:
                 eurekaStatusInfo.unknwon++;
                 break;
             }

@@ -1,7 +1,0 @@
-{
-  "columns": [
-    { "name":"Application"},
-    { "name":"Info"},
-    {"name":"Status"}
-  ]
-}

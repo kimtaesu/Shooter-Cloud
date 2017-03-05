@@ -1,0 +1,40 @@
+<div>
+  <ngx-datatable class="material"
+                 [rows]="rows">
+    <ngx-datatable-column name="Application">
+      <template let-column="column" ngx-datatable-header-template>
+        {{column.name}}
+      </template>
+      <template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Info">
+      <template let-column="column" ngx-datatable-header-template>
+        {{column.name}}
+      </template>
+      <template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Status">
+      <template let-column="column" ngx-datatable-header-template>
+        {{column.name}}
+      </template>
+      <template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Detail">
+      <template let-column="column" ngx-datatable-header-template>
+
+      </template>
+      <template let-value="value" ngx-datatable-cell-template>
+        <button (click)="onClick(value)">Detail</button>
+      </template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
