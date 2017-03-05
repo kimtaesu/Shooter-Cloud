@@ -5,6 +5,7 @@ import {JoinComponent} from "../join/join.component";
 import {DashBoardComponent} from "../admin/dashboard/dashboard.component";
 import {HomeComponent} from "./home.component";
 import {ApplicationListComponent} from "../admin/dashboard/applications/application-list.component";
+import {ApplicationDetailComponent} from "../admin/dashboard/applications/detail/application-detail.component";
 
 @NgModule({
   imports: [
@@ -28,7 +29,11 @@ import {ApplicationListComponent} from "../admin/dashboard/applications/applicat
           {
             path: 'application',
             component: ApplicationListComponent,
-          }
+          },
+          {
+            path: 'application/:instanceId',
+            component: ApplicationDetailComponent
+          },
         ],
       }
     ]),

@@ -1,8 +1,9 @@
 import {Observable} from "rxjs";
-import {Response, Http, Headers} from "@angular/http";
+import {Response, Http, Headers, RequestOptionsArgs, RequestOptions} from "@angular/http";
 import {environment} from "../../../environments/environment";
 export interface RequestClient {
-  httpRequest(http: Http): Observable<Response>
+  httpRequest(http: Http, requestOption?: RequestOptionsArgs): Observable<Response>
+  httpRequest(http: Http, path: string, requestOption?: RequestOptionsArgs): Observable<Response>
 }
 
 let appendResponseOkThrowing = (res: Observable<Response>) => {
@@ -16,11 +17,28 @@ let appendResponseOkThrowing = (res: Observable<Response>) => {
     })
 }
 
-export const ApplicationApi: RequestClient = <RequestClient>{
-  httpRequest: (http: Http) => {
+export const QueryApps: RequestClient = <RequestClient>{
+  httpRequest: (http: Http, requestOption?: RequestOptionsArgs) => {
     var header = new Headers();
     header.append('Accept', 'application/json')
+    if (requestOption == null) {
+      requestOption = new RequestOptions;
+    }
+    requestOption.headers = header;
     return appendResponseOkThrowing(http
-      .get(environment.api.health_check, {headers: header}))
+      .get(environment.api.queryApps, requestOption))
+  }
+}
+
+export const QueryInstance: RequestClient = <RequestClient>{
+  httpRequest: (http: Http, instanceId: string, requestOption?: RequestOptionsArgs) => {
+    var header = new Headers();
+    header.append('Accept', 'application/json')
+    if (requestOption == null) {
+      requestOption = new RequestOptions;
+    }
+    requestOption.headers = header;
+    return appendResponseOkThrowing(http
+      .get(environment.api.queryInstance + '/' + instanceId, requestOption))
   }
 }

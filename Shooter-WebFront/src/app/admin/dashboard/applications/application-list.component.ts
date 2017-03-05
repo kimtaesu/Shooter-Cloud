@@ -3,7 +3,7 @@ import {Http} from "@angular/http";
 import {FlattenPipe} from "ngx-pipes/src/app/pipes/array";
 import "rxjs/add/operator/concatMap";
 import {Router} from "@angular/router";
-import {ApplicationApi} from "../../../shared/http/http-requests.service";
+import {QueryApps} from "../../../shared/http/http-requests.service";
 import {Application_Instance, Applications} from "./summary/application-response";
 
 interface row {
@@ -16,14 +16,14 @@ interface row {
   providers: [FlattenPipe]
 })
 export class ApplicationListComponent implements OnInit {
-  private httpClient = ApplicationApi;
+  private httpClient = QueryApps;
   private rows = [];
 
   constructor(private http: Http, private flatPipe: FlattenPipe, private router: Router) {
   }
 
-  onClick(value: Application_Instance) {
-    console.info(value)
+  onClick(application: Application_Instance) {
+    this.router.navigate(['home', 'application', application.instanceId])
   }
 
   ngOnInit(): void {

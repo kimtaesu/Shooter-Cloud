@@ -9,11 +9,13 @@ import {ProgressSummaryComponent} from "./applications/summary/common/progress-s
 import {ErrorSummaryComponent} from "./applications/summary/common/error-summary.component";
 import {ApplicationListComponent} from "./applications/application-list.component";
 import {ApplicationSummaryComponent} from "./applications/summary/application-summary.component";
+import {ApplicationDetailComponent} from "./applications/detail/application-detail.component";
 @NgModule({
   declarations: [
     DashBoardComponent,
     ProgressSummaryComponent, ErrorSummaryComponent,
     ApplicationListComponent, ApplicationSummaryComponent,
+    ApplicationDetailComponent
 
   ],
   imports: [

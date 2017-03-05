@@ -22,7 +22,8 @@ export const environment = {
     join: server.gateway.url + '/uaa/user/signup',
 
     //  server-discovery
-    health_check: server.eureka.url + '/eureka/apps',
+    queryApps: server.eureka.url + '/eureka/apps',
+    queryInstance: server.eureka.url + '/eureka/instances',
   },
 
   authCofig: {

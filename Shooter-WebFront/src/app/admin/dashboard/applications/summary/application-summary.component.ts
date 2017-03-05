@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ApplicationApi} from "../../../../shared/http/http-requests.service";
+import {QueryApps} from "../../../../shared/http/http-requests.service";
 import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 import {Applications, DISCOVERY_STATUS} from "./application-response";
@@ -17,7 +17,7 @@ interface applicationStatusInfo {
          <error-summary [hidden]="!viewStatus.isError || viewStatus.isLoading"></error-summary>
          <md-card [hidden]="viewStatus.isLoading">
                 <i class="material-icons" (click)="update()">refresh</i>
-                <div (click)="onDetail()"> 
+                <div (click)="onClick()"> 
                   <p>UP {{statusInfo.up}}</p>
                   <p>DOWN {{statusInfo.down}}</p>
                   <p>UNKNWON {{statusInfo.unknwon}}</p>
@@ -30,7 +30,7 @@ interface applicationStatusInfo {
 })
 
 export class ApplicationSummaryComponent implements OnInit {
-  private httpClient = ApplicationApi;
+  private httpClient = QueryApps;
   private response: Applications;
   var
   viewStatus = {
@@ -43,8 +43,8 @@ export class ApplicationSummaryComponent implements OnInit {
     unknwon: 0
   }
 
-  onDetail() {
-    this.router.navigateByUrl('/home/application')
+  onClick() {
+    this.router.navigate(['home', 'application'])
   }
 
   calculateStatusCount(body: Applications) {
@@ -69,7 +69,7 @@ export class ApplicationSummaryComponent implements OnInit {
                 break;
             }
           })
-      })
+      });
     return applicationStatusInfo;
   }
 
