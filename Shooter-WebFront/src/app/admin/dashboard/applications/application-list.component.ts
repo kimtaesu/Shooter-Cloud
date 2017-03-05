@@ -3,8 +3,8 @@ import {Http} from "@angular/http";
 import {FlattenPipe} from "ngx-pipes/src/app/pipes/array";
 import "rxjs/add/operator/concatMap";
 import {Router} from "@angular/router";
-import {EurekaApi} from "../../../shared/http/http-requests.service";
-import {Application_Instance, Applications} from "./summary/eureka-response";
+import {ApplicationApi} from "../../../shared/http/http-requests.service";
+import {Application_Instance, Applications} from "./summary/application-response";
 
 interface row {
   Application: string
@@ -16,7 +16,7 @@ interface row {
   providers: [FlattenPipe]
 })
 export class ApplicationListComponent implements OnInit {
-  private httpClient = EurekaApi;
+  private httpClient = ApplicationApi;
   private rows = [];
 
   constructor(private http: Http, private flatPipe: FlattenPipe, private router: Router) {

@@ -16,7 +16,7 @@ let appendResponseOkThrowing = (res: Observable<Response>) => {
     })
 }
 
-export const EurekaApi: RequestClient = <RequestClient>{
+export const ApplicationApi: RequestClient = <RequestClient>{
   httpRequest: (http: Http) => {
     var header = new Headers();
     header.append('Accept', 'application/json')

@@ -1,16 +1,16 @@
 import {Component, OnInit} from "@angular/core";
-import {EurekaApi} from "../../../../shared/http/http-requests.service";
+import {ApplicationApi} from "../../../../shared/http/http-requests.service";
 import {Http} from "@angular/http";
 import {Router} from "@angular/router";
-import {Applications, DISCOVERY_STATUS} from "./eureka-response";
-interface eurekaStatusInfo {
+import {Applications, DISCOVERY_STATUS} from "./application-response";
+interface applicationStatusInfo {
   up: number,
   down: number,
   unknwon: number
 }
 
 @Component({
-  selector: 'eureka-summary',
+  selector: 'application-summary',
   template: `
         <div>
          <progress-summary [hidden]="!viewStatus.isLoading"></progress-summary>
@@ -29,15 +29,15 @@ interface eurekaStatusInfo {
 `,
 })
 
-export class EurekaSummaryComponent implements OnInit {
-  private httpClient = EurekaApi;
+export class ApplicationSummaryComponent implements OnInit {
+  private httpClient = ApplicationApi;
   private response: Applications;
   var
   viewStatus = {
     isLoading: true,
   }
 
-  statusInfo: eurekaStatusInfo = {
+  statusInfo: applicationStatusInfo = {
     up: 0,
     down: 0,
     unknwon: 0
@@ -48,7 +48,7 @@ export class EurekaSummaryComponent implements OnInit {
   }
 
   calculateStatusCount(body: Applications) {
-    var eurekaStatusInfo: eurekaStatusInfo = {
+    var applicationStatusInfo: applicationStatusInfo = {
       up: 0,
       down: 0,
       unknwon: 0
@@ -59,18 +59,18 @@ export class EurekaSummaryComponent implements OnInit {
           .forEach(instance => {
             switch (+DISCOVERY_STATUS[instance.status]) {
               case DISCOVERY_STATUS.UP:
-                eurekaStatusInfo.up++;
+                applicationStatusInfo.up++;
                 break;
               case DISCOVERY_STATUS.DOWN:
-                eurekaStatusInfo.down++;
+                applicationStatusInfo.down++;
                 break;
               case DISCOVERY_STATUS.UNKNWON:
-                eurekaStatusInfo.unknwon++;
+                applicationStatusInfo.unknwon++;
                 break;
             }
           })
       })
-    return eurekaStatusInfo;
+    return applicationStatusInfo;
   }
 
   constructor(private http: Http, private router: Router) {

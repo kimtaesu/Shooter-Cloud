@@ -8,12 +8,12 @@ import {NgPipesModule} from "ngx-pipes";
 import {ProgressSummaryComponent} from "./applications/summary/common/progress-summary.component";
 import {ErrorSummaryComponent} from "./applications/summary/common/error-summary.component";
 import {ApplicationListComponent} from "./applications/application-list.component";
-import {EurekaSummaryComponent} from "./applications/summary/eureka-summary.component";
+import {ApplicationSummaryComponent} from "./applications/summary/application-summary.component";
 @NgModule({
   declarations: [
     DashBoardComponent,
     ProgressSummaryComponent, ErrorSummaryComponent,
-    ApplicationListComponent, EurekaSummaryComponent,
+    ApplicationListComponent, ApplicationSummaryComponent,
 
   ],
   imports: [
