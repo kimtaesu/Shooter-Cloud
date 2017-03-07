@@ -10,6 +10,7 @@ import {ErrorSummaryComponent} from "./applications/summary/common/error-summary
 import {ApplicationListComponent} from "./applications/application-list.component";
 import {ApplicationSummaryComponent} from "./applications/summary/application-summary.component";
 import {ApplicationDetailComponent} from "./applications/detail/application-detail.component";
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 @NgModule({
   declarations: [
     DashBoardComponent,
@@ -19,6 +20,7 @@ import {ApplicationDetailComponent} from "./applications/detail/application-deta
 
   ],
   imports: [
+    NgxChartsModule,
     BrowserModule,
     MaterialModule,
     NgxDatatableModule,

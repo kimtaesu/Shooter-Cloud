@@ -1,3 +1,7 @@
 configurations {
-    all*.exclude group: '*', module: '*' // 모든 configuration에서 특정 모듈 제외
+//    all*.exclude group: '*', module: '*' // 모든 configuration에서 특정 모듈 제외
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter')
 }

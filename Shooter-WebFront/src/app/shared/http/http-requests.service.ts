@@ -10,7 +10,7 @@ let appendResponseOkThrowing = (res: Observable<Response>) => {
   return res
     .map((res: Response) => {
       if (!res.ok) {
-        throw new Error('The response not ok ' +
+        throw new Error('The instance not ok ' +
           'code : ' + res.status)
       }
       return res;

@@ -1,8 +1,8 @@
-package com.hucet.gateway.config;
+package com.hucet.shared.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -16,10 +16,17 @@ import java.io.IOException;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Slf4j
 public class CorsFilter implements Filter {
+    @Value("${origin.host}")
+    String originHost;
 
-    @Qualifier("frontUrlBean")
-    @Autowired
-    String frontUrl;
+    @Value("${origin.port}")
+    int originPort;
+
+    @Bean("frontUrlBean")
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    String getUrl() {
+        return "http://" + originHost + ":" + originPort;
+    }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -30,7 +37,7 @@ public class CorsFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
-        response.setHeader("Access-Control-Allow-Origin", frontUrl);
+        response.setHeader("Access-Control-Allow-Origin", getUrl());
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setHeader("Access-Control-Allow-Methods",
                     "POST,GET, PUT,DELETE");

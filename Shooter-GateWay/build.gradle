@@ -3,4 +3,5 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-zuul')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.cloud:spring-cloud-starter-oauth2')
+    compile project(':Shooter-Shared')
 }

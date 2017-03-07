@@ -1,6 +1,5 @@
 server:
   port: 8084
-
 # Logback 에서 yml 찾지 못함.
 spring.application.name: mail-service
 logging.level:
