@@ -1,19 +1,63 @@
 version: '2'
 services:
   mysql:
-    build: ./mysql
-    ports:
-      - 3306:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=test
-      - MYSQL_PASSWORD=test
-      - MYSQL_DATABASE=user_service
+        build: ./mysql
+        ports:
+        - 3306:3306
+        environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_USER=test
+        - MYSQL_PASSWORD=test
+        - MYSQL_DATABASE=user_service
   rabbitmq:
-    image: rabbitmq:3-management
-    ports:
-      - 15672:15672
-    environment:
-      - RABBITMQ_DEFAULT_USER=test
-      - RABBITMQ_DEFAULT_PASS=test
-      - RABBITMQ_DEFAULT_VHOST=/test
+        image: rabbitmq:3-management
+        ports:
+        - 15672:15672
+        environment:
+        - RABBITMQ_DEFAULT_USER=test
+        - RABBITMQ_DEFAULT_PASS=test
+        - RABBITMQ_DEFAULT_VHOST=/test
+
+  logstash:
+        build: elk-stack/logstash/
+        ports:
+          # Beats input -- https://www.elastic.co/guide/en/logstash/5.0/plugins-inputs-beats.html
+          - '5044:5044'
+
+          # UDP input -- https://www.elastic.co/guide/en/logstash/master/plugins-inputs-udp.html#plugins-inputs-udp-codec
+          - '43448:43448/udp'
+
+          # Monitoring APIs -- https://www.elastic.co/guide/en/logstash/5.0/monitoring.html
+          - '9600:9600'
+        networks:
+          - docker_elk
+        depends_on:
+          - elasticsearch
+  elasticsearch:
+        build: elk-stack/elasticsearch/
+        ports:
+          - "9200:9200"
+          - "9300:9300"
+        #environment:
+          # disable X-Pack
+          # see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
+          #     https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-enabling
+          #xpack.security.enabled: "false"
+          #xpack.monitoring.enabled: "false"
+          #xpack.graph.enabled: "false"
+          #xpack.watcher.enabled: "false"
+        networks:
+          - docker_elk
+
+  kibana:
+        build: elk-stack/kibana/
+        ports:
+          - "5601:5601"
+        networks:
+          - docker_elk
+        depends_on:
+          - elasticsearch
+
+networks:
+  docker_elk:
+    driver: bridge
