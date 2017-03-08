@@ -2,7 +2,7 @@ package com.hucet.mail.content;
 
 import com.hucet.mail.properties.MailConfProperties;
 import com.hucet.mail.type.EmailType;
-import com.hucet.shared.MailDto;
+import com.hucet.shared.dto.MailDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;

@@ -39,3 +39,12 @@ mail:
   smtp:
     start-tls-enable: true
     auth: true
+
+shooter:
+  origin:
+    enable: true
+    host: localhost
+    port: 4200
+  repoter:
+#  Second
+    frequency: 10

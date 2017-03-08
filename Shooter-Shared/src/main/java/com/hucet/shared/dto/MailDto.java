@@ -1,4 +1,4 @@
-package com.hucet.shared;
+package com.hucet.shared.dto;
 
 import java.io.Serializable;
 

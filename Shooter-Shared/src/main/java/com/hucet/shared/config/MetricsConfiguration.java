@@ -1,4 +1,4 @@
-package com.hucet.mail.config;
+package com.hucet.shared.config;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Slf4jReporter;

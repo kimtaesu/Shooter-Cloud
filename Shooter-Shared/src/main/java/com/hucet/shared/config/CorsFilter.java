@@ -1,12 +1,14 @@
 package com.hucet.shared.config;
 
+import com.hucet.shared.properties.ShooterProperties;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,17 +17,14 @@ import java.io.IOException;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Slf4j
+@ConditionalOnProperty(value = "shooter.origin.enable", matchIfMissing = true)
 public class CorsFilter implements Filter {
-    @Value("${origin.host}")
-    String originHost;
+    @Autowired
+    ShooterProperties shooterProperties;
 
-    @Value("${origin.port}")
-    int originPort;
-
-    @Bean("frontUrlBean")
-    @Order(Ordered.HIGHEST_PRECEDENCE)
-    String getUrl() {
-        return "http://" + originHost + ":" + originPort;
+    @PostConstruct
+    void init() {
+        log.info("CorsFilter Bean Create");
     }
 
     @Override
@@ -35,9 +34,13 @@ public class CorsFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
-        response.setHeader("Access-Control-Allow-Origin", getUrl());
+
+        String originUrl = "http://" + shooterProperties.getOrigin().getHost() + ":" +
+                shooterProperties.getOrigin().getPort();
+        response.setHeader("Access-Control-Allow-Origin", originUrl);
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setHeader("Access-Control-Allow-Methods",
                     "POST,GET, PUT,DELETE");

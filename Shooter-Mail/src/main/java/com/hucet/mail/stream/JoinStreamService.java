@@ -3,7 +3,7 @@ package com.hucet.mail.stream;
 import com.hucet.mail.service.MailSendService;
 import com.hucet.mail.stream.processor.JoinProcessor;
 import com.hucet.mail.type.EmailType;
-import com.hucet.shared.MailDto;
+import com.hucet.shared.dto.MailDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
