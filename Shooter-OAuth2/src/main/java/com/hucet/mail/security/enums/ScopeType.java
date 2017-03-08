@@ -1,8 +1,0 @@
-package com.hucet.mail.security.enums;
-
-/**
- * Created by taesu on 2017-01-24.
- */
-public enum ScopeType {
-    TEST
-}
