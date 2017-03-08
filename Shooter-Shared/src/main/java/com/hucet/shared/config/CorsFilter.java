@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
+//@Order(Ordered.HIGHEST_PRECEDENCE)
 @Slf4j
-@ConditionalOnProperty(value = "shooter.origin.enable", matchIfMissing = true)
+@ConditionalOnProperty(value = "shooter.origin.enable", havingValue = "true", matchIfMissing = true)
 public class CorsFilter implements Filter {
     @Autowired
     ShooterProperties shooterProperties;
