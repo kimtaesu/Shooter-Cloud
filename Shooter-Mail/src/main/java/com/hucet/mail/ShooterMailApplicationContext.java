@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 //@EnableDiscoveryClient
 @SpringBootApplication
 @Slf4j
-@EnableConfigurationProperties(ShooterProperties.class)
+
 public class ShooterMailApplicationContext extends ShooterBeanContext {
     public static void main(String[] args) {
         SpringApplication.run(ShooterMailApplicationContext.class, args);
