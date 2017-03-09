@@ -1,15 +1,17 @@
-package com.hucet.gateway;
+package com.hucet.admin;
+
+import de.codecentric.boot.admin.config.EnableAdminServer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
+@EnableAdminServer
 @EnableDiscoveryClient
-@EnableZuulProxy
-public class ShooterGateWayApplication {
+public class ShooterAdminApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(ShooterGateWayApplication.class, args);
+        SpringApplication.run(ShooterAdminApplication.class, args);
     }
 }

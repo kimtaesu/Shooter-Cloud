@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @EnableConfigurationProperties(MailConfProperties.class)
-@ConfigurationProperties(prefix = "mail")
+@ConfigurationProperties(prefix = "mail", locations = "mail-config.yml")
 public class MailConfProperties {
     @Data
     public static class Smtp {
@@ -20,6 +20,7 @@ public class MailConfProperties {
         private Boolean startTlsRequired;
         private Boolean startTlsEnable;
     }
+
     private Boolean enable = true;
     private String host;
     private String protocol;

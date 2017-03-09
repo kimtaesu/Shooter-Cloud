@@ -1,0 +1,4 @@
+ext {
+	springBootVersion = '1.4.2.RELEASE'
+	springCloudVersion = 'Camden.SR3'
+}

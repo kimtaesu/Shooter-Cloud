@@ -1,16 +1,27 @@
+server:
+  port: 8084
+# Logback 에서 yml 찾지 못함.
+spring.application.name: mail-service
+#spring.profiles.active: mail
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: test
+    password: test
+    virtual-host: /test
   cloud:
-    config:
-      uri: http://localhost:8888
-      failFast: false
+    stream:
+      bindings:
+#         Input
+        do-cert-mail:
+          group: group.join
+          destination: queue.notify.mail
+      rabbit:
+        bindings:
+          from-signup:
+            consumer:
+              requeueRejected: false
+              autoBindDlq: true
+              republishToDlq : true
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    preferIpAddress: true
-    leaseRenewalIntervalInSeconds: 30
-    leaseExpirationDurationInSeconds: 90
-    metadataMap:
-      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}

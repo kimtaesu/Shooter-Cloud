@@ -1,7 +1,7 @@
+
 buildscript {
-    ext {
-        springBootVersion = '1.4.4.RELEASE'
-    }
+    apply from: 'versions.gradle'
+
     repositories {
         mavenCentral()
     }
@@ -11,40 +11,32 @@ buildscript {
 }
 
 subprojects {
-    buildscript {
-        ext {
-            springBootVersion = '1.4.4.RELEASE'
-        }
-        repositories {
-            mavenCentral()
-        }
-        dependencies {
-            classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        }
-    }
     apply plugin: 'java'
-    apply plugin: 'eclipse'
+    apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
 
-    dependencies {
-        compile('org.springframework.cloud:spring-cloud-starter-eureka')
-        compile('org.projectlombok:lombok:1.16.6')
-        // https://mvnrepository.com/artifact/com.google.guava/guava
-        compile group: 'com.google.guava', name: 'guava', version: '21.0'
-        compile('org.springframework.boot:spring-boot-starter-actuator')
-    }
+
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-    repositories {
-        mavenCentral()
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url "https://repo.spring.io/milestone" }
+    dependencies {
+//        compile('org.springframework.cloud:spring-cloud-starter-eureka')
+        compile('org.projectlombok:lombok:1.16.6')
+        // https://mvnrepository.com/artifact/com.google.guava/guava
+//        compile group: 'com.google.guava', name: 'guava', version: '21.0'
+//        compile('org.springframework.boot:spring-boot-starter-actuator')
     }
-    dependencyManagement {
-        imports {
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.BUILD-SNAPSHOT"
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    buildscript {
+
+        dependencyManagement {
+            imports {
+                mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+            }
         }
     }
 }

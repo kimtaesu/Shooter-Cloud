@@ -1,10 +1,19 @@
-server:
-  port: 9000
-# Define security
-spring.application.name: gateway-service
-security:
-  basic:
-    enabled: false
-#  user:
-#    password: password
-#  ignored: /css/**,/js/**,/favicon.ico,/webjars/**
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+      failFast: false
+
+origin:
+  front: localhost:4200
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 90
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
