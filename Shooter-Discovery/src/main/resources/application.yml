@@ -1,3 +1,7 @@
+spring.application.name: discoery-service
+server:
+  port: 8761
+
 spring:
   cloud:
     config:
@@ -5,10 +9,30 @@ spring:
       failFast: false
 
 
+#Standalone Mode
+#The combination of the two caches (client and server) and the heartbeats make a standalone Eureka server fairly resilient to failure, as long as there is some sort of monitor or elastic runtime keeping it alive (e.g. Cloud Foundry). In standalone mode, you might prefer to switch off the client side behaviour, so it doesn’t keep trying and failing to reach its peers. Example:
+#
+#application.yml (Standalone Eureka Server)
+#server:
+#  port: 8761
+#
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+#    serviceUrl:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#
 eureka:
+  instance:
+    hostname: localhost
   client:
+#  If you are running locally, there is a 2 to 3 minutes wait until fulling boot up. This happens because Eureka will be looking for peers. To disable this, set to 0 (although you should never do this in production)
     registerWithEureka: false
     fetchRegistry: false
   server:
-    waitTimeInMsWhenSyncEmpty: 0
+#  #Set this only for this sample service without which starting the instance will by default wait for the default of 5 mins
+#    waitTimeInMsWhenSyncEmpty: 0
     enable-self-preservation: false

@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: discoery-service
-
-server:
-  port: 8761

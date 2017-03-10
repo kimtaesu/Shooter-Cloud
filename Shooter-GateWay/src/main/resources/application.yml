@@ -1,3 +1,8 @@
+server:
+  port: 9000
+# Define security
+spring.application.name: gateway-service
+
 spring:
   cloud:
     config:
@@ -6,14 +11,37 @@ spring:
 
 origin:
   front: localhost:4200
-
 eureka:
   client:
-    service-url:
+    serviceUrl:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       defaultZone: http://localhost:8761/eureka/
   instance:
-    preferIpAddress: true
-    leaseRenewalIntervalInSeconds: 30
-    leaseExpirationDurationInSeconds: 90
-    metadataMap:
-      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    leaseRenewalIntervalInSeconds: 20
+    leaseExpirationDurationInSeconds: 30
+  metadataMap:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+
+#Uploading Files through Zuul
+#If you @EnableZuulProxy you can use the proxy paths to upload files and it should just work as long as the files are small. For large files there is an alternative path which bypasses the Spring DispatcherServlet (to avoid multipart processing) in "/zuul/*". I.e. if zuul.routes.customers=/customers/** then you can POST large files to "/zuul/customers/*". The servlet path is externalized via zuul.servletPath. Extremely large files will also require elevated timeout settings if the proxy route takes you through a Ribbon load balancer, e.g.
+#
+#application.yml
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+#ribbon:
+#  ConnectTimeout: 3000
+#  ReadTimeout: 60000
+
+# Disable Hystrix timeout globally (for all services)
+#hystrix.command.default.execution.timeout.enabled: false
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+#hystrix.command.service-a.execution.timeout.enabled: false
+
+# Disable Hystrix timeout for a single service
+#hystrix.command.<serviceName>.execution.timeout.enabled: false
+
+# Increase the Hystrix timeout to 60s (globally)
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+
+# Increase the Hystrix timeout to 60s (per service)
+#hystrix.command.<serviceName>.execution.isolation.thread.timeoutInMilliseconds: 60000

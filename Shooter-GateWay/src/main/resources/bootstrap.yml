@@ -1,7 +1,4 @@
-server:
-  port: 9000
-# Define security
-spring.application.name: gateway-service
+
 security:
   basic:
     enabled: false
