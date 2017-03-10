@@ -1,5 +1,42 @@
 version: '2'
 services:
+  config-server:
+    build: ./Shooter-CentralConfig
+    ports:
+        - 8888:8888
+    environment:
+        - "SPRING_PROFILES_ACTIVE=docker"
+    depends_on:
+    - server-discovery
+  server-discovery:
+    build: ./Shooter-Discovery
+    ports:
+        - 8761:8761
+    environment:
+        - "SPRING_PROFILES_ACTIVE=docker"
+#  zipkin:
+#    image: openzipkin/zipkin
+#    ports:
+#      - "9411:9411"
+
+#  rabbitmq:
+#    image: rabbitmq:3-management
+#    ports:
+#    - 15672:15672
+#    environment:
+#    - RABBITMQ_DEFAULT_USER=test
+#    - RABBITMQ_DEFAULT_PASS=test
+#    - RABBITMQ_DEFAULT_VHOST=/test
+
+  # last gateway server run
+  server-gateway:
+    build: ./Shooter-GateWay
+    ports:
+    - 9001:9001
+    depends_on:
+    - server-discovery
+    environment:
+        - "SPRING_PROFILES_ACTIVE=docker"
 #  mysql:
 #        build: ./mysql
 #        ports:
@@ -9,15 +46,6 @@ services:
 #        - MYSQL_USER=test
 #        - MYSQL_PASSWORD=test
 #        - MYSQL_DATABASE=user_service
-  rabbitmq:
-        image: rabbitmq:3-management
-        ports:
-        - 15672:15672
-        environment:
-        - RABBITMQ_DEFAULT_USER=test
-        - RABBITMQ_DEFAULT_PASS=test
-        - RABBITMQ_DEFAULT_VHOST=/test
-
 #  logstash:
 #        build: elk-stack/logstash/
 #        ports:

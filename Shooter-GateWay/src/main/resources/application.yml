@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 9001
 # Define security
 spring.application.name: gateway-service
 
@@ -9,8 +9,17 @@ spring:
       uri: http://localhost:8888
       failFast: false
 
+
+security:
+  basic:
+    enabled: false
+endpoints:
+  cors:
+    allowed-origins: ${origin.front}
+
 origin:
   front: localhost:4200
+
 eureka:
   client:
     serviceUrl:

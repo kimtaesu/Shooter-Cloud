@@ -1,0 +1,37 @@
+server:
+  port: 9001
+# Define security
+spring.application.name: gateway-service
+
+spring:
+  cloud:
+    config:
+      uri: http://config-server:8888
+      failFast: false
+  sleuth:
+    sampler:
+      percentage: 1
+  zipkin:
+    base-url: http://zipkin:9411/
+
+security:
+  basic:
+    enabled: false
+#endpoints:
+#  cors:
+#    allowed-origins: ${origin.front}
+#
+#origin:
+#  front: localhost:4200
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://server-discovery:8761/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 20
+    leaseExpirationDurationInSeconds: 30
+  metadataMap:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000

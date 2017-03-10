@@ -1,7 +1,0 @@
-
-security:
-  basic:
-    enabled: false
-endpoints:
-  cors:
-    allowed-origins: ${origin.front}

@@ -1,0 +1,22 @@
+spring.application.name: discoery-service
+server:
+  port: 8761
+
+spring:
+  cloud:
+    config:
+      uri: http://config-server:8888
+      failFast: false
+
+eureka:
+  instance:
+    hostname: server-discovery
+    prefer-ip-address: true
+  client:
+#  If you are running locally, there is a 2 to 3 minutes wait until fulling boot up. This happens because Eureka will be looking for peers. To disable this, set to 0 (although you should never do this in production)
+    registerWithEureka: false
+    fetchRegistry: false
+  server:
+#  #Set this only for this sample service without which starting the instance will by default wait for the default of 5 mins
+#    waitTimeInMsWhenSyncEmpty: 0
+    enable-self-preservation: false
